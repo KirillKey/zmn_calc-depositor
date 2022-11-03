@@ -1,0 +1,83 @@
+
+.deposit-calc__wrapper {
+    background-color: #f0f8ff;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.deposit-calc__title{
+    margin-bottom: 18px;
+}
+.deposit-calc__items{
+    background-color: #f0f8ff;
+    padding: 30px 170px;
+    border: 2px solid rgb(101 175 4 / 50%);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.deposit-calc__item__title{
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.deposit-calc__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.deposit-calc__item-title{
+    margin-bottom: 8px;
+}
+
+
+.deposit-calc__item-input {
+
+}
+
+.deposit-calc__input{
+    width: 200px;
+    height: 20px;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+
+
+.deposit-calc__result{
+    margin-top: 16px;
+}
+
+.calc-input--deposit_period{
+    margin-top: 6px;
+}
+
+.deposit-btn {
+	width: 320px;
+    height: 66px;
+    font-size: 22px;
+    line-height: 36px;
+    font-weight: 900;
+    color: #fff;
+    padding: 16px 92px;
+    border-radius: 16px;
+    background: #65af04;
+    border: none;
+    cursor: pointer;
+
+}	
+
+.deposit-btn:hover {
+		opacity: 0.99;
+		box-shadow: 0 4px 6px #9fbd80;
+		transition: background-color 0.3s;
+}
+
+.deposit-calc__result__item {
+    margin-top: 6px;
+}

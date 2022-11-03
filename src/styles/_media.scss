@@ -1,0 +1,48 @@
+// width-display-size
+$full-monitor: 1920px;
+$monitor: 1600px;
+$notebook: 1024px;
+$tablets: 768px;
+$phones-album: 480px;
+$phones-port: 320px;
+
+@mixin full-monitor {
+ @media screen and (max-width: $full-monitor) {
+   @content;   
+ }
+}
+
+@mixin monitor {
+ @media screen and (max-width: $monitor) {
+   @content;   
+ }
+}
+
+@mixin notebook {
+  @media screen and (max-width: $notebook) {
+    @content;
+  }
+}
+
+ @mixin tablets {
+  @media screen and (max-width: $tablets) {
+    @content;
+  }
+}
+
+ @mixin phones-album {
+  @media screen and (max-width: $phones-album) {
+    @content;   
+  }
+}
+
+ @mixin phones-port {
+  @media screen and (max-width: $phones-port) {
+    @content;   
+  }
+}
+
+
+ @function rem($px) {
+  @return $px / $basefontssize + 0rem;
+}

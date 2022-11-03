@@ -1,0 +1,116 @@
+$basefontssize: 16px;
+html {
+	font-size: $basefontssize;
+	
+	@include notebook {
+		font-size: $basefontssize - 0px;
+	}
+
+	@include tablets {
+		font-size: $basefontssize - 1px;
+	}
+
+	@include phones-album {
+			font-size: $basefontssize - 2px;
+	}
+
+	@include phones-port {
+			font-size: $basefontssize - 2px;
+	}
+}
+
+html {
+	font-family: 'Nekst', Helvetica, sans-serif;
+	font-weight: 400;
+	color: #575757;
+}
+
+body,
+html {
+	height: 100%;
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: #000;
+	margin: 0;
+}
+
+button {
+	border: 0;
+	cursor: pointer;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+	margin: 0;
+}
+
+p {
+	margin: 0;
+	padding: 0;
+}
+
+button {
+	cursor: pointer;
+}
+a {
+	color: inherit;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+// .button {
+// 	width: rem(426px); 
+// 	height: rem(68px);
+// 	font-size: rem(30px);
+// 	line-height: rem(36px);
+// 	font-weight: 900;
+// 	color: #fff;
+// 	padding: rem(16px) rem(92px);
+// 	border-radius: rem(40px);
+// 	background-color: #FF9514;
+// 	border: none;
+// 	cursor: pointer;
+
+
+// 	@include notebook {
+// 		height: rem(68px);
+// 		padding: rem(16px) rem(92px);
+// 	}
+
+// 	@include phones-album {
+// 		width: rem(280px); 
+// 		height: rem(60px);
+// 		font-size: rem(22px);
+// 		line-height: rem(20px);
+// 		padding: rem(20px) rem(20px);	
+//   }
+// }	
+
+// .button:hover {
+// 		background-color: #ff8c00;
+// 		transition: background-color 0.3s;
+// }
