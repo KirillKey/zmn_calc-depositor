@@ -1,26 +1,34 @@
 const depositInput = $('.deposit-calc__input');
-// const initialSum = parseFloat($('.calc-input--sum').val());
+const calcDepositBtn = $('.calc-deposit-btn');  
+
+
+
+
+calcDepositBtn.on('click', function () {
+
 const initialSum = $('.calc-input--sum').val();
 const deadlines = $('.calc-input--deadlines').val();
 const bet = $('.calc-input--bet').val();
 const period = $('.calc-input--period').val();
 const addsDeposit = $('.calc-input--adds-deposit').val();
-const calcDepositBtn = $('.calc-deposit-btn');  
 
 const finalSum = $('.deposit__result__out--final-sum');
 const allPercents = $('.deposit__result__out--all-percents');
 const sumAllDeposits = $('.deposit__result__out--sum-all-deposits');
 
-// const finalSumVal = initialSum - initialSum;
-// const finalSumVal = Math(initialSum * (1 + bet / period));
+const finalSumVal = Math.round(initialSum * (1 + bet));
+const test = bet / period;
+const test2 = bet / 2;
 const allPercentsVal = 1;
 const sumAllDepositsVal = 1;
-
-
-calcDepositBtn.on('click', function () {
+    
     console.log(finalSumVal);
+    console.log(test);
+    console.log(test2);
+    // console.log(initialSum);
+    // console.log(bet);
 
-    finalSum.append(finalSumVal)
+    // finalSum.append(finalSumVal)
 });
 
 depositInput.on('input', function (e) {
