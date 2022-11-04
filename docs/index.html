@@ -23,114 +23,161 @@
         <div class="deposit-calc">
             <h1 class="deposit-calc__title">Рассчитать итоговую сумму вклада.</h1>
             <div class="deposit-calc__wrapper">
-                <div class="deposit-calc__items">
-                    <div class="deposit-calc__item">
-                        <h4 class="deposit-calc__item__title">Начальная сумма</h4>
-                        <div class="deposit-calc__item-input">
-                            <input type="text" class="deposit-calc__input calc-input--sum" value="10 000">
-                        </div>
-                    </div>
-                    <div class="deposit-calc__item">
-                        <h4 class="deposit-calc__item__title">Сроки вклада</h4>
-                        <div class="deposit-calc__item-input">
-                            <input type="text" class="deposit-calc__input calc-input--deadlines">
-                        </div>
-                    </div>
-                    <div class="deposit-calc__item">
-                        <h4 class="deposit-calc__item__title">Годовая ставка (%)</h4>
-                        <div class="deposit-calc__item-input">
-                            <input type="text" class="deposit-calc__input calc-input--bet">
-                        </div>
-                    </div>
-
-
-                    <div class="deposit-calc__item">
-                        <h4 class="deposit-calc__item__title">Период начисления процентов</h4>
-                        <div class="deposit-calc__item-select">
-                            <select class="deposit-calc__select calc-input--capitalization" name="capitalization">
-                                <option value="no" class="period">Без капитализации</option>
-                                <option value="day" class="period">Ежедневно</option>
-                                <option value="month" class="period">1 раз в месяц</option>
-                                <option value="quarter" class="period">1 раз в квартал</option>
-                                <option value="half_year" class="period">1 раз в полгода</option>
-                                <option value="year" class="period">1 раз в год</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="deposit-calc__item">
-                        <h4 class="deposit-calc__item__title">Пополнение вкладов</h4>
-                        <div class="deposit-calc__item-input">
-                            <input type="text" class="deposit-calc__input calc-input--adds-deposit">
-                        </div>
-                        <div class="deposit-calc__item-select">
-                            <select class="deposit-calc__select calc-input--deposit_period" name="deposit_period">
-                                <option value="1" selected="">1 раз в месяц</option>
-                                <option value="3">1 раз в квартал</option>
-                                <option value="6">1 раз в полгода</option>
-                                <option value="12">1 раз в год</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="deposit-calc__item" style="display: none;">
-                        <h4 class="deposit-calc__item__title">Время внесения вкладов</h4>
-                        <div class="deposit-calc__item-input">
-                            <div class="time-of-deposit_radio">
-                                <label>
-                                    <input type="radio" name="end_month" value="begin">Начало месяца
-                                </label>
-                            </div>
-                            <div class="time-of-deposit_radio">
-                                <label>
-                                    <input type="radio" name="end_month" checked="" value="end">Конец месяца
-                                </label>
+                <div class="deposit-calc__section deposit-calc__section-one ">
+                    <div class="deposit-calc__items">
+                        <div class="deposit-calc__item">
+                            <h4 class="deposit-calc__item__title">Начальная сумма</h4>
+                            <div class="deposit-calc__item-input">
+                                <input type="text" class="deposit-calc__input calc-input--sum" value="10 000">
                             </div>
                         </div>
-                    </div>
+                        <div class="deposit-calc__item">
+                            <h4 class="deposit-calc__item__title">Сроки вклада</h4>
+                            <div class="deposit-calc__item-input">
+                                <input type="text" class="deposit-calc__input calc-input--deadlines">
+                            </div>
+                        </div>
+                        <div class="deposit-calc__item">
+                            <h4 class="deposit-calc__item__title">Годовая ставка (%)</h4>
+                            <div class="deposit-calc__item-input">
+                                <input type="text" class="deposit-calc__input calc-input--bet">
+                            </div>
+                        </div>
+
+
+                        <div class="deposit-calc__item">
+                            <h4 class="deposit-calc__item__title">Период начисления процентов</h4>
+                            <div class="deposit-calc__item-select">
+                                <select class="deposit-calc__select calc-input--capitalization" name="capitalization">
+                                    <option value="no" class="period">Без капитализации</option>
+                                    <option value="day" class="period">Ежедневно</option>
+                                    <option value="month" class="period">1 раз в месяц</option>
+                                    <option value="quarter" class="period">1 раз в квартал</option>
+                                    <option value="half_year" class="period">1 раз в полгода</option>
+                                    <option value="year" class="period">1 раз в год</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="deposit-calc__item">
+                            <h4 class="deposit-calc__item__title">Пополнение вкладов</h4>
+                            <div class="deposit-calc__item-input">
+                                <input type="text" class="deposit-calc__input calc-input--adds-deposit">
+                            </div>
+                            <div class="deposit-calc__item-select">
+                                <select class="deposit-calc__select calc-input--deposit_period" name="deposit_period">
+                                    <option value="1" selected="">1 раз в месяц</option>
+                                    <option value="3">1 раз в квартал</option>
+                                    <option value="6">1 раз в полгода</option>
+                                    <option value="12">1 раз в год</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="deposit-calc__item" style="display: none;">
+                            <h4 class="deposit-calc__item__title">Время внесения вкладов</h4>
+                            <div class="deposit-calc__item-input">
+                                <div class="time-of-deposit_radio">
+                                    <label>
+                                        <input type="radio" name="end_month" value="begin">Начало месяца
+                                    </label>
+                                </div>
+                                <div class="time-of-deposit_radio">
+                                    <label>
+                                        <input type="radio" name="end_month" checked="" value="end">Конец месяца
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
 
 
 
-                </div>
-                <div class="deposit__right-col">
-                    <div class="deposit-calc__submit">
-                        <button class="deposit-btn calc-deposit-btn">Рассчитать</button>
                     </div>
-                    <div class="deposit-calc__result">
-                        <div class="deposit-calc__result__item">
-                            <div class="deposit__result__title">Итоговая сумма:</div>
-                            <div class="deposit__result__out deposit__result__out--final-sum">142 443</div>
+                    <div class="deposit__right-col">
+                        <div class="deposit-calc__result">
+                            <div class="deposit-calc__result__item">
+                                <div class="deposit__result__title">Итоговая сумма:</div>
+                                <div class="deposit__result__out deposit__result__out--final-sum">142 443</div>
+                            </div>
+                            <div class="deposit-calc__result__item">
+                                <div class="deposit__result__title">Начислено процентов:</div>
+                                <div class="deposit__result__out deposit__result__out--all-percents">23</div>
+                            </div>
+                            <div class="deposit-calc__result__item">
+                                <div class="deposit__result__title">Сумма всех вкладов:</div>
+                                <div class="deposit__result__out deposit__result__out--sum-all-deposits">456</div>
+                            </div>
                         </div>
-                        <div class="deposit-calc__result__item">
-                            <div class="deposit__result__title">Начислено процентов:</div>
-                            <div class="deposit__result__out deposit__result__out--all-percents">23</div>
-                        </div>
-                        <div class="deposit-calc__result__item">
-                            <div class="deposit__result__title">Сумма всех вкладов:</div>
-                            <div class="deposit__result__out deposit__result__out--sum-all-deposits">456</div>
+                        <div class="deposit-calc__submit">
+                            <button class="deposit-btn calc-deposit-btn">Рассчитать</button>
                         </div>
                     </div>
                 </div>
-                <div class="rates-currency">
-                    <table class="rates-currency__table table">
-                        <tbody class="rates-currency__table-tbody">
-                            <tr class="rates-currency__table-tr--head">
-                                <th class="rates-currency__table-td">Дата</th>
-                                <th class="rates-currency__table-td">Начисленные проценты</th>
-                                <th class="rates-currency__table-td">Пополнения</th>
-                                <th class="rates-currency__table-td">Конечная сумма</th>
-                            </tr>
-                            <tr class="rates-currency__table-tr">
-                                <td class="rates-currency__table-td">12 месяц
-                                </td>
-                                <td class="rates-currency__table-td">546456
-                                </td>
-                                <td class="rates-currency__table-td">45654
-                                </td>
-                                <td class="rates-currency__table-td">45654
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="deposit-calc__section deposit-calc__section-two">
+                    <hr class="hr-dashed-gradient hr-horizontal-gradient">
+                    <div class="rates-currency">
+                        <table class="rates-currency__table table">
+                            <tbody class="rates-currency__table-tbody">
+                                <tr class="rates-currency__table-tr--head">
+                                    <th class="rates-currency__table-td">Дата</th>
+                                    <th class="rates-currency__table-td">Начисленные проценты</th>
+                                    <th class="rates-currency__table-td">Пополнения</th>
+                                    <th class="rates-currency__table-td">Конечная сумма</th>
+                                </tr>
+                                <tr class="rates-currency__table-tr">
+                                    <td class="rates-currency__table-td">12 месяц
+                                    </td>
+                                    <td class="rates-currency__table-td">546456
+                                    </td>
+                                    <td class="rates-currency__table-td">456545
+                                    </td>
+                                    <td class="rates-currency__table-td">45654778
+                                    </td>
+                                </tr>
+                                <tr class="rates-currency__table-tr">
+                                    <td class="rates-currency__table-td">12 месяц
+                                    </td>
+                                    <td class="rates-currency__table-td">546456
+                                    </td>
+                                    <td class="rates-currency__table-td">456545
+                                    </td>
+                                    <td class="rates-currency__table-td">45654778
+                                    </td>
+                                </tr>
+                                <tr class="rates-currency__table-tr">
+                                    <td class="rates-currency__table-td">12 месяц
+                                    </td>
+                                    <td class="rates-currency__table-td">546456
+                                    </td>
+                                    <td class="rates-currency__table-td">456545
+                                    </td>
+                                    <td class="rates-currency__table-td">45654778
+                                    </td>
+                                </tr>
+                                <tr class="rates-currency__table-tr">
+                                    <td class="rates-currency__table-td">12 месяц
+                                    </td>
+                                    <td class="rates-currency__table-td">546456
+                                    </td>
+                                    <td class="rates-currency__table-td">456545
+                                    </td>
+                                    <td class="rates-currency__table-td">45654778
+                                    </td>
+                                </tr>
+                                <tr class="rates-currency__table-tr">
+                                    <td class="rates-currency__table-td">12 месяц
+                                    </td>
+                                    <td class="rates-currency__table-td">546456
+                                    </td>
+                                    <td class="rates-currency__table-td">456545
+                                    </td>
+                                    <td class="rates-currency__table-td">45654778
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
             </div>
         </div>
 
