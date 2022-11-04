@@ -1,4 +1,4 @@
-// const depositInput = $('.deposit-calc__input').val();
+const depositInput = $('.deposit-calc__input');
 // const initialSum = parseFloat($('.calc-input--sum').val());
 const initialSum = $('.calc-input--sum').val();
 const deadlines = $('.calc-input--deadlines').val();
@@ -22,3 +22,10 @@ calcDepositBtn.on('click', function () {
 
     finalSum.append(finalSumVal)
 });
+
+depositInput.on('input', function (e) {
+    if (e) {
+        
+    }
+    // alert('Вот так вот')
+})

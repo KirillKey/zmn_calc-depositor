@@ -1,5 +1,5 @@
 .wrapper {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     margin-top: 60px;
 }
@@ -20,6 +20,7 @@ justify-content: center;
     // flex-direction: column;
     // align-items: center;
     width: 100%;
+    position: relative;
 }
 .deposit-calc__title{
     margin-bottom: 40px;
@@ -33,6 +34,7 @@ justify-content: center;
 }
 
 .deposit-calc__item__title{
+    text-align: center;
     font-size: 18px;
     margin-bottom: 8px;
 }
@@ -42,10 +44,6 @@ justify-content: center;
     flex-direction: column;
     align-items: center;
     margin-bottom: 30px;
-}
-
-.deposit-calc__item-title{
-    margin-bottom: 8px;
 }
 
 
@@ -73,20 +71,45 @@ justify-content: center;
 
 .deposit-calc__result{
     margin-top: 16px;
+    width: 288px;
 }
+
+.deposit-calc__result__item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+// .deposit__result__out{
+//     margin-left: 100px;
+
+//     &--final-sum{
+//         margin-left: 98px;
+//     }
+//     &--all-percents{
+//         margin-left: 98px;
+//     }
+// }
+
 
 .calc-input--deposit_period{
     margin-top: 6px;
 }
 
+.deposit-calc__submit{
+    position: absolute;
+    bottom: 56px;
+    left: 324px;
+}
+
 .deposit-btn {
-	width: 320px;
-    height: 66px;
+    width: 300px;
+    height: 64px;
     font-size: 22px;
     line-height: 36px;
     font-weight: 900;
     color: #fff;
-    padding: 16px 92px;
+    padding: 0px 80px;
     border-radius: 16px;
     background: #65af04;
     border: none;
@@ -100,6 +123,7 @@ justify-content: center;
 		transition: background-color 0.3s;
 }
 
-.deposit-calc__result__item {
-    margin-top: 6px;
+
+.deposit__right-col {
+    margin-left: 40px;
 }

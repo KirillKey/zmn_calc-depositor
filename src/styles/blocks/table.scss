@@ -1,0 +1,42 @@
+.rates-currency {
+    background-color: rgba(101, 175, 4, 0.3);
+    text-align: center;
+    // border: 16px solid transparent;
+    border-radius: 20px;
+    margin-left: 20px;
+}
+
+.rates-currency__table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-collapse: separate;
+    border-spacing: 6px;
+
+}
+
+.rates-currency__table-tbody th {
+    font-size: 12px;
+    padding: 8px;
+}
+
+.rates-currency__table-tbody td {
+    background-color: #f0f8ff;
+    white-space: nowrap;
+    padding: 6px 28px;
+    border-radius: 15px;
+    border: 1px rgba(128, 128, 128, 0.075) outset;
+}
+.rates-currency__table-tbody td:hover {
+    border: 1px rgba(128, 128, 128, 0.2) outset;
+    box-shadow: -1px -1px 0px 0px #65af0491;
+}
+.rates-currency__table-tbody td a {
+        color: inherit;
+        cursor: pointer;
+        text-decoration: none;
+     }
+.rates-currency__table-tbody td a:hover {
+    color: rgba(240, 156, 0, 0.9);
+}
