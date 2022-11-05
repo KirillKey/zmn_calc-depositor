@@ -21,26 +21,27 @@
     <div class="wrapper">
 
         <div class="deposit-calc">
-            <h1 class="deposit-calc__title">Рассчитать итоговую сумму вклада.</h1>
+            <!-- <h1 class="deposit-calc__title">Рассчитать итоговую сумму вклада.</h1> -->
+            <h1 class="deposit-calc__title">Калькулятор сложных процентов</h1>
             <div class="deposit-calc__wrapper">
                 <div class="deposit-calc__section deposit-calc__section-one ">
                     <div class="deposit-calc__items">
                         <div class="deposit-calc__item">
                             <h4 class="deposit-calc__item__title">Начальная сумма</h4>
                             <div class="deposit-calc__item-input">
-                                <input type="text" class="deposit-calc__input calc-input--sum" value="10000">
+                                <input type="text" class="deposit-calc__input calc-input__sum" value="10000">
                             </div>
                         </div>
                         <div class="deposit-calc__item">
-                            <h4 class="deposit-calc__item__title">Сроки вклада</h4>
+                            <h4 class="deposit-calc__item__title">Сроки вклада (годы)</h4>
                             <div class="deposit-calc__item-input">
-                                <input type="text" class="deposit-calc__input calc-input--deadlines" value="12">
+                                <input type="text" class="deposit-calc__input calc-input__deadlines" value="1">
                             </div>
                         </div>
                         <div class="deposit-calc__item">
                             <h4 class="deposit-calc__item__title">Годовая ставка (%)</h4>
                             <div class="deposit-calc__item-input">
-                                <input type="text" class="deposit-calc__input calc-input--bet" value="7">
+                                <input type="text" class="deposit-calc__input calc-input__bet" value="10">
                             </div>
                         </div>
 
@@ -48,27 +49,50 @@
                         <div class="deposit-calc__item">
                             <h4 class="deposit-calc__item__title">Период начисления процентов</h4>
                             <div class="deposit-calc__item-select">
-                                <select class="deposit-calc__select calc-input--capitalization" name="capitalization">
-                                    <option value="no" class="period">Без капитализации</option>
-                                    <option value="day" class="period">Ежедневно</option>
-                                    <option value="month" class="period">1 раз в месяц</option>
-                                    <option value="quarter" class="period">1 раз в квартал</option>
-                                    <option value="half_year" class="period">1 раз в полгода</option>
-                                    <option value="year" class="period">1 раз в год</option>
+                                <select class="deposit-calc__select calc-input__capitalizations" name="capitalizations">
+                                    <option value="0" data-capitalization="no"
+                                        class="capitalization capitalization--no">
+                                        Без капитализации
+                                    </option>
+                                    <option value="1" data-capitalization="day"
+                                        class="capitalization capitalization--day">
+                                        Ежедневно</option>
+                                    <option value="1 ?" data-capitalization="month"
+                                        class="capitalization capitalization--month">
+                                        1 раз в месяц
+                                    </option>
+                                    <option value="quarter ?" data-capitalization="quarter"
+                                        class="capitalization capitalization--quarter">
+                                        1 раз в квартал</option>
+                                    <option value="half_year ?" data-capitalization="half_year"
+                                        class="capitalization capitalization--half_year">
+                                        1 раз в полгода</option>
+                                    <option value="1" data-capitalization="year"
+                                        class="capitalization capitalization--year">
+                                        1 раз в год
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <div class="deposit-calc__item">
                             <h4 class="deposit-calc__item__title">Пополнение вкладов</h4>
                             <div class="deposit-calc__item-input">
-                                <input type="text" class="deposit-calc__input calc-input--adds-deposit">
+                                <input type="text" class="deposit-calc__input calc-input__adds-deposit">
                             </div>
                             <div class="deposit-calc__item-select">
-                                <select class="deposit-calc__select calc-input--deposit_period" name="deposit_period">
-                                    <option value="1" selected="">1 раз в месяц</option>
-                                    <option value="3">1 раз в квартал</option>
-                                    <option value="6">1 раз в полгода</option>
-                                    <option value="12">1 раз в год</option>
+                                <select class="deposit-calc__select calc-input__deposit_period" name="deposit_period">
+                                    <option value="1" class="deposit_period__val" data-depositPeriod="day">1 раз в
+                                        месяц
+                                    </option>
+                                    <option value="3" class="deposit_period__val" data-depositPeriod="quarter">1 раз в
+                                        квартал
+                                    </option>
+                                    <option value="6" class="deposit_period__val" data-depositPeriod="half_year">1 раз
+                                        в полгода
+                                    </option>
+                                    <option value="12" class="deposit_period__val" data-depositPeriod="year">1 раз в
+                                        год
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -95,15 +119,15 @@
                         <div class="deposit-calc__result">
                             <div class="deposit-calc__result__item">
                                 <div class="deposit__result__title">Итоговая сумма:</div>
-                                <div class="deposit__result__out deposit__result__out--final-sum">142 443</div>
+                                <div class="deposit__result__out deposit__result__out--final-sum">0</div>
                             </div>
                             <div class="deposit-calc__result__item">
                                 <div class="deposit__result__title">Начислено процентов:</div>
-                                <div class="deposit__result__out deposit__result__out--all-percents">23</div>
+                                <div class="deposit__result__out deposit__result__out--all-percents">0</div>
                             </div>
                             <div class="deposit-calc__result__item">
                                 <div class="deposit__result__title">Сумма всех вкладов:</div>
-                                <div class="deposit__result__out deposit__result__out--sum-all-deposits">456</div>
+                                <div class="deposit__result__out deposit__result__out--sum-all-deposits">0</div>
                             </div>
                         </div>
                         <div class="deposit-calc__submit">
