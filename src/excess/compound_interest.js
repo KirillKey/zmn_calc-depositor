@@ -57,44 +57,44 @@ class TableData {
 data = [];
 data_year = [];
 
-$(function(){
-	$('.calculate').on('click', function(){
-    	if (!CreateInputData()) return;
-    	scrollToResult();
-    	switch(input.type){
-    		case "profit":
-    		case "period":
-                switch (input.capitalization){
-                    case "no":
-                        capitalization_no();
-                        break;
-                    case "day":
-                        capitalization_day();
-                        break;
-                    case "month":
-                        capitalization_month();
-                        break;
-                    case "quarter":
-                        capitalization_quarter();
-                        break;
-                    case "half_year":
-                        capitalization_half_year();
-                        break;
-                    case "year":
-                        capitalization_year();
-                        break;
-                }
-    			break;
-    		case "deposit":
+$(function () {
+	$('.calculate').on('click', function () {
+		if (!CreateInputData()) return;
+		scrollToResult();
+		switch (input.type) {
+			case "profit":
+			case "period":
+				switch (input.capitalization) {
+					case "no":
+						capitalization_no();
+						break;
+					case "day":
+						capitalization_day();
+						break;
+					case "month":
+						capitalization_month();
+						break;
+					case "quarter":
+						capitalization_quarter();
+						break;
+					case "half_year":
+						capitalization_half_year();
+						break;
+					case "year":
+						capitalization_year();
+						break;
+				}
+				break;
+			case "deposit":
 				start_capital();
-    			break;
-    		case "addition":
-    			periodic_deposit();
-    			break;
-    	}
-    	create_data_year();
-    	create_result_block();
-    	if (input.report_view == "graph") create_chart();
+				break;
+			case "addition":
+				periodic_deposit();
+				break;
+		}
+		create_data_year();
+		create_result_block();
+		if (input.report_view == "graph") create_chart();
 		if (input.report_view == "table") create_table();
 	});
 	$('.compound-interest__wrapper [name=purpose]').on('input', filters);
@@ -104,12 +104,12 @@ $(function(){
 	$('.compound-interest__wrapper [name=srok_year]').on('input', filters_data);
 	$('.compound-interest__wrapper [name=srok_month]').on('input', filters_data);
 	$('.compound-interest__wrapper [name=inflation]').on('input', filters_percent);
-	$('.compound-interest__wrapper [name=inflation_enable]').on('input', function(){
+	$('.compound-interest__wrapper [name=inflation_enable]').on('input', function () {
 		if ($(this).prop("checked")) $('.compound-interest__item-input_inflation').css('display', 'block');
-		else  $('.compound-interest__item-input_inflation').css('display', 'none');
+		else $('.compound-interest__item-input_inflation').css('display', 'none');
 	});
-	$('.compound-interest__wrapper [name=type]').on('input', function(){
-		switch($('.compound-interest__wrapper [name=type]:checked').val()){
+	$('.compound-interest__wrapper [name=type]').on('input', function () {
+		switch ($('.compound-interest__wrapper [name=type]:checked').val()) {
 			case "profit":
 				$('.compound-interest__item_target').css('display', 'none');
 				$('.compound-interest__item_capital').css('display', 'flex');
@@ -140,30 +140,30 @@ $(function(){
 				break;
 		}
 	});
-	$('.compound-interest__main input').on('dblclick', function(event) {
+	$('.compound-interest__main input').on('dblclick', function (event) {
 		$(this).select();
 	});
 	getParams();
 });
 
 function getParams() {
-	
+
 }
-function CalcStart(){
+function CalcStart() {
 	$('.calculate').trigger('click');
 
 }
-function scrollToResult(){
+function scrollToResult() {
 	$('html, body').animate({
 		scrollTop: $('.compound-interest__result').offset().top
-    }, {
+	}, {
 		duration: 370,
 		easing: "linear"
-    });
+	});
 }
 
 
-function CreateInputData(){
+function CreateInputData() {
 	var result = true;
 	var set_focuse = false;
 	//
@@ -174,26 +174,26 @@ function CreateInputData(){
 	//
 	// ваша цель
 	//
-	input.target = $('.compound-interest__wrapper [name=purpose]').val().replaceAll(' ',''); 
+	input.target = $('.compound-interest__wrapper [name=purpose]').val().replaceAll(' ', '');
 	input.target = parseFloat(input.target);
-	if (input.type != 'profit'){
-		if (isNaN(input.target) || input.target <= 0){
-			$('.compound-interest__wrapper [name=purpose]').css('box-shadow','0 0 5px 2px red');
+	if (input.type != 'profit') {
+		if (isNaN(input.target) || input.target <= 0) {
+			$('.compound-interest__wrapper [name=purpose]').css('box-shadow', '0 0 5px 2px red');
 			$('.compound-interest__wrapper [name=purpose]').focus();
 			$('.compound-interest__item_target .compound-interest__item-input').append('<div class="tooltip_input">Пожалуйста, введите значение</div>');
-			setTimeout(() => $('.tooltip_input').animate({ opacity: 0 }, 400, function() {$(this).remove()}), 3000);
+			setTimeout(() => $('.tooltip_input').animate({ opacity: 0 }, 400, function () { $(this).remove() }), 3000);
 			set_focuse = true;
 			result = false;
 		}
-		else{
-			$('.compound-interest__wrapper [name=purpose]').css('box-shadow','none');
+		else {
+			$('.compound-interest__wrapper [name=purpose]').css('box-shadow', 'none');
 		}
 	}
 
 	//
 	// стартовый капитал
 	//
-	input.start_capital = $('.compound-interest__wrapper [name=start_capital]').val().replaceAll(' ','');
+	input.start_capital = $('.compound-interest__wrapper [name=start_capital]').val().replaceAll(' ', '');
 	input.start_capital = parseFloat(input.start_capital);
 	if (isNaN(input.start_capital)) {
 		input.start_capital = 0;
@@ -206,23 +206,23 @@ function CreateInputData(){
 	var srok = $('.compound-interest__wrapper [name=srok_year]').val();
 	srok = parseInt(srok);
 	if (isNaN(srok)) srok = 0;
-	input.time_invest = srok*12;
+	input.time_invest = srok * 12;
 	srok = $('.compound-interest__wrapper [name=srok_month]').val();
 	srok = parseInt(srok);
 	if (isNaN(srok)) srok = 0;
 	input.time_invest += srok;
-	if (input.type != 'period'){
-		if (isNaN(input.time_invest) || input.time_invest <= 0){
-			$('.compound-interest__item_time .compound-interest__item-input').css('box-shadow','0 0 5px 2px red');
+	if (input.type != 'period') {
+		if (isNaN(input.time_invest) || input.time_invest <= 0) {
+			$('.compound-interest__item_time .compound-interest__item-input').css('box-shadow', '0 0 5px 2px red');
 			if (!set_focuse) {
 				$('.compound-interest__wrapper [name=srok_year]').focus();
 				$('.compound-interest__item_time .compound-interest__item-input').append('<div class="tooltip_input">Пожалуйста, введите значение</div>');
-				setTimeout(() => $('.tooltip_input').animate({ opacity: 0 }, 400, function() {$(this).remove()}), 3000);
+				setTimeout(() => $('.tooltip_input').animate({ opacity: 0 }, 400, function () { $(this).remove() }), 3000);
 			}
 			result = false;
 		}
-		else{
-			$('.compound-interest__item_time .compound-interest__item-input').css('box-shadow','none');
+		else {
+			$('.compound-interest__item_time .compound-interest__item-input').css('box-shadow', 'none');
 		}
 	}
 
@@ -243,7 +243,7 @@ function CreateInputData(){
 	//
 	// дополнительные вложения
 	//
-	input.periodic_deposit = $('.compound-interest__wrapper [name=periodic-deposit]').val().replaceAll(' ','');
+	input.periodic_deposit = $('.compound-interest__wrapper [name=periodic-deposit]').val().replaceAll(' ', '');
 	input.periodic_deposit = parseFloat(input.periodic_deposit);
 	if (isNaN(input.periodic_deposit)) {
 		input.periodic_deposit = 0;
@@ -271,7 +271,7 @@ function CreateInputData(){
 		if (isNaN(input.inflation)) input.inflation = 0;
 		if (input.inflation > 500) input.inflation = 500;
 		$('.compound-interest__wrapper [name=inflation]').val(input.inflation);
-		input.inflation = input.inflation/100;
+		input.inflation = input.inflation / 100;
 	}
 	else input.inflation_enable = false;
 
@@ -281,8 +281,8 @@ function CreateInputData(){
 
 	return result;
 }
-function SetInputData(){
-	switch(input.type){
+function SetInputData() {
+	switch (input.type) {
 		case "profit":
 			$('.compound-interest__wrapper [value=profit]').prop("checked", true);
 			break;
@@ -315,7 +315,7 @@ function SetInputData(){
 	$('.compound-interest__wrapper [name=stavka]').trigger('input');
 
 	$('.compound-interest__wrapper [name=capitalization]').val(input.capitalization);
-	if ($('.compound-interest__wrapper [name=capitalization]').val() == null){
+	if ($('.compound-interest__wrapper [name=capitalization]').val() == null) {
 		$('.compound-interest__wrapper [name=capitalization]').val("no");
 	}
 
@@ -324,7 +324,7 @@ function SetInputData(){
 	$('.compound-interest__wrapper [name=periodic-deposit]').trigger('input');
 
 	$('.compound-interest__wrapper [name=periodic-deposit_period]').val(input.periodic_deposit_period);
-	if ($('.compound-interest__wrapper [name=periodic-deposit_period]').val() == null){
+	if ($('.compound-interest__wrapper [name=periodic-deposit_period]').val() == null) {
 		$('.compound-interest__wrapper [name=periodic-deposit_period]').val("1");
 	}
 
@@ -343,113 +343,113 @@ function SetInputData(){
 
 	input.url = "";
 }
-function filters(){
-    var data = this.value;
-    $('.tooltip_input').animate({ opacity: 0 }, 100, function() {$(this).remove()});
-    data = data.replace(/[^0-9\.,]/g, '');
-    data = data.replace(/[,]/, '.');
-    data = data.replace(/[.]+/, '.');
-    if (data ==',') data = '';
-    var fl = false;
-    var cnt = 0;
-    for (var i = 0; i < data.length; i++) {
-    	if (fl){
-    		cnt++;
-    		if (cnt > 2){
-    			data = data.slice(0, i);
-    			break;
-    		}
-    	}
-    	if (data[i] == '.'){
-    		if (fl){
-    			data = data.slice(0, i);
-    			break;
-    		}
-    		else fl = true;
-    	}
-    }
-    if (parseFloat(data) > 100000000000000) data = "100000000000000";
-	data = data.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
-	this.value = data;
-}   
-function filters_deposit(){
-    var data = this.value;
-    data = data.replace(/[^0-9\.,]/g, '');
-    data = data.replace(/[,]/, '.');
-    data = data.replace(/[.]+/, '.');
-    if (data ==',') data = '';
-    var fl = false;
-    var cnt = 0;
-    for (var i = 0; i < data.length; i++) {
-    	if (fl){
-    		cnt++;
-    		if (cnt > 2){
-    			data = data.slice(0, i);
-    			break;
-    		}
-    	}
-    	if (data[i] == '.'){
-    		if (fl){
-    			data = data.slice(0, i);
-    			break;
-    		}
-    		else fl = true;
-    	}
-    }
-    var depo = parseFloat(data);
-    if (depo > 0) {
-		$('.compound-interest__item_shadow').slideDown(300);
-    }
-    else{
-		$('.compound-interest__item_shadow').slideUp(300);
-    }
-    if (depo > 100000000000000) data = "100000000000000";
-	data = data.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
-	this.value = data;
-}   
-function filters_percent(){
-    var data = this.value;
-    data = data.replace(/[^0-9\.,]/g, '');
-    data = data.replace(/[,]/, '.');
-    data = data.replace(/[.]+/, '.');
-    if (data ==',') data = '';
-    var fl = false;
-    var cnt = 0;
-    for (var i = 0; i < data.length; i++) {
-    	if (fl){
-    		cnt++;
-    		if (cnt > 2){
-    			data = data.slice(0, i);
-    			break;
-    		}
-    	}
-    	if (data[i] == '.'){
-    		if (fl){
-    			data = data.slice(0, i);
-    			break;
-    		}
-    		else fl = true;
-    	}
-    }
-    if (parseFloat(data) > 500) data = "500";
+function filters() {
+	var data = this.value;
+	$('.tooltip_input').animate({ opacity: 0 }, 100, function () { $(this).remove() });
+	data = data.replace(/[^0-9\.,]/g, '');
+	data = data.replace(/[,]/, '.');
+	data = data.replace(/[.]+/, '.');
+	if (data == ',') data = '';
+	var fl = false;
+	var cnt = 0;
+	for (var i = 0; i < data.length; i++) {
+		if (fl) {
+			cnt++;
+			if (cnt > 2) {
+				data = data.slice(0, i);
+				break;
+			}
+		}
+		if (data[i] == '.') {
+			if (fl) {
+				data = data.slice(0, i);
+				break;
+			}
+			else fl = true;
+		}
+	}
+	if (parseFloat(data) > 100000000000000) data = "100000000000000";
 	data = data.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
 	this.value = data;
 }
-function filters_data(){
-    $('.tooltip_input').animate({ opacity: 0 }, 100, function() {$(this).remove()});
+function filters_deposit() {
+	var data = this.value;
+	data = data.replace(/[^0-9\.,]/g, '');
+	data = data.replace(/[,]/, '.');
+	data = data.replace(/[.]+/, '.');
+	if (data == ',') data = '';
+	var fl = false;
+	var cnt = 0;
+	for (var i = 0; i < data.length; i++) {
+		if (fl) {
+			cnt++;
+			if (cnt > 2) {
+				data = data.slice(0, i);
+				break;
+			}
+		}
+		if (data[i] == '.') {
+			if (fl) {
+				data = data.slice(0, i);
+				break;
+			}
+			else fl = true;
+		}
+	}
+	var depo = parseFloat(data);
+	if (depo > 0) {
+		$('.compound-interest__item_shadow').slideDown(300);
+	}
+	else {
+		$('.compound-interest__item_shadow').slideUp(300);
+	}
+	if (depo > 100000000000000) data = "100000000000000";
+	data = data.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
+	this.value = data;
+}
+function filters_percent() {
+	var data = this.value;
+	data = data.replace(/[^0-9\.,]/g, '');
+	data = data.replace(/[,]/, '.');
+	data = data.replace(/[.]+/, '.');
+	if (data == ',') data = '';
+	var fl = false;
+	var cnt = 0;
+	for (var i = 0; i < data.length; i++) {
+		if (fl) {
+			cnt++;
+			if (cnt > 2) {
+				data = data.slice(0, i);
+				break;
+			}
+		}
+		if (data[i] == '.') {
+			if (fl) {
+				data = data.slice(0, i);
+				break;
+			}
+			else fl = true;
+		}
+	}
+	if (parseFloat(data) > 500) data = "500";
+	data = data.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1 ");
+	this.value = data;
+}
+function filters_data() {
+	$('.tooltip_input').animate({ opacity: 0 }, 100, function () { $(this).remove() });
 	var data = this.value;
 	data = data.replace(/[^0-9]/g, '');
-	if (this.name == "srok_year"){
+	if (this.name == "srok_year") {
 		if (parseFloat(data) > 200) data = "200";
 	}
-	if (this.name == "srok_month"){
+	if (this.name == "srok_month") {
 		if (parseFloat(data) > 60) data = "60";
 	}
 	this.value = data;
 }
 
 
-function capitalization_no(){
+function capitalization_no() {
 	var result = 0;
 	data = [];
 	input.periodic_deposit_inflation = input.periodic_deposit;
@@ -463,13 +463,10 @@ function capitalization_no(){
 
 	if (input.type == "period") input.time_invest = 12000;
 
-	for (let i = 1; i <= input.time_invest; i++)
-	{
+	for (let i = 1; i <= input.time_invest; i++) {
 		var TD = new TableData();
-		if (input.inflation_enable)
-		{
-			if (((i - 1) % 12 == 0) && (i > 1))
-			{
+		if (input.inflation_enable) {
+			if (((i - 1) % 12 == 0) && (i > 1)) {
 				input.periodic_deposit_inflation = input.periodic_deposit_inflation * (1 + input.inflation);
 			}
 		}
@@ -488,10 +485,8 @@ function capitalization_no(){
 		result = TD.sum_table;
 
 		data.push(TD);
-		if (input.type == "period")
-		{
-			if (TD.sum_table >= input.target)
-			{
+		if (input.type == "period") {
+			if (TD.sum_table >= input.target) {
 				input.time_invest = i;
 				return result;
 			}
@@ -499,7 +494,7 @@ function capitalization_no(){
 	}
 	return result;
 }
-function capitalization_day(){
+function capitalization_day() {
 	var result = 0;
 	data = [];
 	input.periodic_deposit_inflation = input.periodic_deposit;
@@ -514,13 +509,10 @@ function capitalization_day(){
 
 	if (input.type == "period") input.time_invest = 12000;
 
-	for (let i = 1; i <= input.time_invest; i++)
-	{
+	for (let i = 1; i <= input.time_invest; i++) {
 		var TD = new TableData();
-		if (input.inflation_enable)
-		{
-			if (((i - 1) % 12 == 0) && (i > 1))
-			{
+		if (input.inflation_enable) {
+			if (((i - 1) % 12 == 0) && (i > 1)) {
 				input.periodic_deposit_inflation = input.periodic_deposit_inflation * (1 + input.inflation);
 			}
 		}
@@ -539,10 +531,8 @@ function capitalization_day(){
 		result = TD.sum_table;
 		data.push(TD);
 
-		if (input.type == "period")
-		{
-			if (TD.sum_table >= input.target)
-			{
+		if (input.type == "period") {
+			if (TD.sum_table >= input.target) {
 				input.time_invest = i;
 				return result;
 			}
@@ -550,7 +540,7 @@ function capitalization_day(){
 	}
 	return result;
 }
-function capitalization_month(){
+function capitalization_month() {
 	var result = 0;
 	data = [];
 	input.periodic_deposit_inflation = input.periodic_deposit;
@@ -564,13 +554,10 @@ function capitalization_month(){
 
 	if (input.type == "period") input.time_invest = 12000;
 
-	for (let i = 1; i <= input.time_invest; i++)
-	{
+	for (let i = 1; i <= input.time_invest; i++) {
 		var TD = new TableData();
-		if (input.inflation_enable)
-		{
-			if (((i - 1) % 12 == 0) && (i > 1))
-			{
+		if (input.inflation_enable) {
+			if (((i - 1) % 12 == 0) && (i > 1)) {
 				input.periodic_deposit_inflation = input.periodic_deposit_inflation * (1 + input.inflation);
 			}
 		}
@@ -590,10 +577,8 @@ function capitalization_month(){
 
 		data.push(TD);
 
-		if (input.type == "period")
-		{
-			if (TD.sum_table >= input.target)
-			{
+		if (input.type == "period") {
+			if (TD.sum_table >= input.target) {
 				input.time_invest = i;
 				return result;
 			}
@@ -601,7 +586,7 @@ function capitalization_month(){
 	}
 	return result;
 }
-function capitalization_quarter(){
+function capitalization_quarter() {
 	var result = 0;
 	data = [];
 	input.periodic_deposit_inflation = input.periodic_deposit;
@@ -615,13 +600,10 @@ function capitalization_quarter(){
 
 	if (input.type == "period") input.time_invest = 12000;
 
-	for (let i = 1; i <= input.time_invest; i++)
-	{
+	for (let i = 1; i <= input.time_invest; i++) {
 		var TD = new TableData();
-		if (input.inflation_enable)
-		{
-			if (((i - 1) % 12 == 0) && (i > 1))
-			{
+		if (input.inflation_enable) {
+			if (((i - 1) % 12 == 0) && (i > 1)) {
 				input.periodic_deposit_inflation = input.periodic_deposit_inflation * (1 + input.inflation);
 			}
 		}
@@ -633,8 +615,7 @@ function capitalization_quarter(){
 		TD.sum_calc = TD_main.sum_calc + TD.periodic_deposit;
 		TD_main.percent += TD.percent;
 		TD.sum_table = TD.sum_calc + TD_main.percent;
-		if (i % 3 == 0)
-		{
+		if (i % 3 == 0) {
 			TD.sum_calc += TD_main.percent;
 			TD_main.percent = 0;
 		}
@@ -647,10 +628,8 @@ function capitalization_quarter(){
 
 		data.push(TD);
 
-		if (input.type == "period")
-		{
-			if (TD.sum_table >= input.target)
-			{
+		if (input.type == "period") {
+			if (TD.sum_table >= input.target) {
 				input.time_invest = i;
 				return result;
 			}
@@ -658,7 +637,7 @@ function capitalization_quarter(){
 	}
 	return result;
 }
-function capitalization_half_year(){
+function capitalization_half_year() {
 	var result = 0;
 	data = [];
 	input.periodic_deposit_inflation = input.periodic_deposit;
@@ -672,13 +651,10 @@ function capitalization_half_year(){
 
 	if (input.type == "period") input.time_invest = 12000;
 
-	for (let i = 1; i <= input.time_invest; i++)
-	{
+	for (let i = 1; i <= input.time_invest; i++) {
 		var TD = new TableData();
-		if (input.inflation_enable)
-		{
-			if (((i - 1) % 12 == 0) && (i > 1))
-			{
+		if (input.inflation_enable) {
+			if (((i - 1) % 12 == 0) && (i > 1)) {
 				input.periodic_deposit_inflation = input.periodic_deposit_inflation * (1 + input.inflation);
 			}
 		}
@@ -690,8 +666,7 @@ function capitalization_half_year(){
 		TD.sum_calc = TD_main.sum_calc + TD.periodic_deposit;
 		TD_main.percent += TD.percent;
 		TD.sum_table = TD.sum_calc + TD_main.percent;
-		if (i % 6 == 0)
-		{
+		if (i % 6 == 0) {
 			TD.sum_calc += TD_main.percent;
 			TD_main.percent = 0;
 		}
@@ -704,10 +679,8 @@ function capitalization_half_year(){
 
 		data.push(TD);
 
-		if (input.type == "period")
-		{
-			if (TD.sum_table >= input.target)
-			{
+		if (input.type == "period") {
+			if (TD.sum_table >= input.target) {
 				input.time_invest = i;
 				return result;
 			}
@@ -715,7 +688,7 @@ function capitalization_half_year(){
 	}
 	return result;
 }
-function capitalization_year(){
+function capitalization_year() {
 	var result = 0;
 	data = [];
 	input.periodic_deposit_inflation = input.periodic_deposit;
@@ -729,13 +702,10 @@ function capitalization_year(){
 
 	if (input.type == "period") input.time_invest = 12000;
 
-	for (let i = 1; i <= input.time_invest; i++)
-	{
+	for (let i = 1; i <= input.time_invest; i++) {
 		var TD = new TableData();
-		if (input.inflation_enable)
-		{
-			if (((i - 1) % 12 == 0) && (i > 1))
-			{
+		if (input.inflation_enable) {
+			if (((i - 1) % 12 == 0) && (i > 1)) {
 				input.periodic_deposit_inflation = input.periodic_deposit_inflation * (1 + input.inflation);
 			}
 		}
@@ -747,8 +717,7 @@ function capitalization_year(){
 		TD.sum_calc = TD_main.sum_calc + TD.periodic_deposit;
 		TD_main.percent += TD.percent;
 		TD.sum_table = TD.sum_calc + TD_main.percent;
-		if (i % 12 == 0)
-		{
+		if (i % 12 == 0) {
 			TD.sum_calc += TD_main.percent;
 			TD_main.percent = 0;
 		}
@@ -761,10 +730,8 @@ function capitalization_year(){
 
 		data.push(TD);
 
-		if (input.type == "period")
-		{
-			if (TD.sum_table >= input.target)
-			{
+		if (input.type == "period") {
+			if (TD.sum_table >= input.target) {
 				input.time_invest = i;
 				return result;
 			}
@@ -774,20 +741,18 @@ function capitalization_year(){
 }
 
 
-function start_capital(){
+function start_capital() {
 	input.target = Math.round(input.target);
 	var vklad = 0;
 	var add_count = 0;
 	input.start_capital = 2;
-	while(true){
+	while (true) {
 		if (input.start_capital >= input.target) break;
 		input.start_capital *= 2;
 	}
 	var add = Math.round(input.start_capital / 2);
-	while (true)
-	{
-		switch(input.capitalization)
-		{
+	while (true) {
+		switch (input.capitalization) {
 			case "no":
 				vklad = Math.round(capitalization_no());
 				break;
@@ -808,25 +773,22 @@ function start_capital(){
 				break;
 		}
 		if (input.start_capital == 0) break;
-		if (vklad > input.target)
-		{
+		if (vklad > input.target) {
 			if (vklad - input.target < 10) break;
 			input.start_capital -= add;
-			if (input.start_capital < 0){
+			if (input.start_capital < 0) {
 				input.start_capital = 0;
 			}
 		}
-		else
-		{
+		else {
 			if (input.target - vklad < 10) break;
 			input.start_capital += add;
-			if (input.start_capital < 0){
+			if (input.start_capital < 0) {
 				input.start_capital = 0;
 			}
 		}
 		add = Math.floor(add / 2);
-		if (add < 1)
-		{
+		if (add < 1) {
 			add_count++;
 			if (add_count >= 10) break;
 			add = 1;
@@ -834,8 +796,7 @@ function start_capital(){
 	}
 	if (vklad < input.target) {
 		input.start_capital++;
-		switch(input.capitalization)
-		{
+		switch (input.capitalization) {
 			case "no":
 				capitalization_no();
 				break;
@@ -859,21 +820,19 @@ function start_capital(){
 }
 
 
-function periodic_deposit(){
-	if (input.capitalization == "no"){
+function periodic_deposit() {
+	if (input.capitalization == "no") {
 		input.periodic_deposit = Math.round(start_vklad_no());
 	}
-	else{
+	else {
 		input.periodic_deposit = Math.round(start_vklad_capitalization());
 	}
 	input.target = Math.round(input.target);
 	var vklad = 0;
 	var add_count = 0;
 	var add = Math.round(input.periodic_deposit / 2);
-	while (true)
-	{
-		switch (input.capitalization)
-		{
+	while (true) {
+		switch (input.capitalization) {
 			case "no":
 				vklad = Math.round(capitalization_no());
 				break;
@@ -894,25 +853,22 @@ function periodic_deposit(){
 				break;
 		}
 		if (input.periodic_deposit == 0) break;
-		if (vklad > input.target)
-		{
+		if (vklad > input.target) {
 			if (vklad - input.target < 10) break;
 			input.periodic_deposit -= add;
-			if (input.periodic_deposit < 0){
+			if (input.periodic_deposit < 0) {
 				input.periodic_deposit = 0;
 			}
 		}
-		else
-		{
+		else {
 			if (input.target - vklad < 10) break;
 			input.periodic_deposit += add;
-			if (input.periodic_deposit < 0){
+			if (input.periodic_deposit < 0) {
 				input.periodic_deposit = 0;
 			}
 		}
 		add = Math.floor(add / 2);
-		if (add < 1)
-		{
+		if (add < 1) {
 			add_count++;
 			if (add_count >= 10) break;
 			add = 1;
@@ -920,8 +876,7 @@ function periodic_deposit(){
 	}
 	if (vklad < input.target) {
 		input.periodic_deposit++;
-		switch(input.capitalization)
-		{
+		switch (input.capitalization) {
 			case "no":
 				capitalization_no();
 				break;
@@ -940,12 +895,12 @@ function periodic_deposit(){
 			case "year":
 				capitalization_year();
 				break;
-		}		
+		}
 	}
 }
 
 
-function start_vklad_no(){
+function start_vklad_no() {
 	var r = input.stavka / (100 * 12);
 	var r1 = 0;
 	var N = input.time_invest;
@@ -956,7 +911,7 @@ function start_vklad_no(){
 	r = r * input.periodic_deposit_period;
 	return (input.target - input.start_capital * (1 + r * N + r1)) / (N * r * (N - 1) / 2 + N + N * r1);
 }
-function start_vklad_capitalization(){
+function start_vklad_capitalization() {
 	var r = input.stavka / (100 * 12);
 	var N = Math.round(input.time_invest / input.periodic_deposit_period);
 	r = r * input.periodic_deposit_period;
@@ -964,24 +919,23 @@ function start_vklad_capitalization(){
 }
 
 
-function periodic_deposit_correct_inflation(i){
+function periodic_deposit_correct_inflation(i) {
 	var result = 0;
-	if (i % input.periodic_deposit_period == 0)
-	{
+	if (i % input.periodic_deposit_period == 0) {
 		result = input.periodic_deposit_inflation;
 	}
 	return result;
 }
 
 
-function create_data_year(){
+function create_data_year() {
 	data_year = [];
 	var TD_calc = new TableData();
 	for (var i = 0; i < data.length; i++) {
 		not_full = true;
 		TD_calc.percent += data[i].percent;
 		TD_calc.periodic_deposit += data[i].periodic_deposit;
-		if (((i + 1) % 12 == 0) || (i+1 == data.length)){
+		if (((i + 1) % 12 == 0) || (i + 1 == data.length)) {
 			TD_calc.sum_table = data[i].sum_table;
 			TD_calc.percent_sum = data[i].percent_sum;
 			TD_calc.periodic_deposit_sum = data[i].periodic_deposit_sum;
@@ -990,10 +944,10 @@ function create_data_year(){
 		}
 	}
 }
-function create_result_block(){
+function create_result_block() {
 	$('.compound-interest__result').html(result_block);
 	set_result_params();
-	switch($('.compound-interest__wrapper [name=type]:checked').val()){
+	switch ($('.compound-interest__wrapper [name=type]:checked').val()) {
 		case "profit":
 			$('#result_type_text').text('Итоговая сумма:');
 			$('.result_type').text(result_params.total_sum);
@@ -1018,49 +972,49 @@ function create_result_block(){
 
 	if (input.report_period.toLowerCase() == "years") $('.compound-interest__wrapper [value=years]').prop("checked", true);
 	if (input.report_view.toLowerCase() == "table") $('.compound-interest__wrapper [value=table]').prop("checked", true);
-	$('.compound-interest__wrapper [name=report-period]').on('input', function(){
+	$('.compound-interest__wrapper [name=report-period]').on('input', function () {
 		input.report_period = $('.compound-interest__wrapper [name=report-period]:checked').val();
 		if (input.report_view == "graph") create_chart();
 		if (input.report_view == "table") create_table();
 	})
-	$('.compound-interest__wrapper [name=report-view]').on('input', function(){
+	$('.compound-interest__wrapper [name=report-view]').on('input', function () {
 		input.report_view = $('.compound-interest__wrapper [name=report-view]:checked').val();
 		if (input.report_view == "graph") create_chart();
 		if (input.report_view == "table") create_table();
 	})
-	$('.sl_copy_button').on('click', function(event) {
+	$('.sl_copy_button').on('click', function (event) {
 		event.preventDefault();
-        let text = $(this).prev('textarea');
-        let content = text.val();
-        text.css("background-color", "grey");
-        setTimeout(() => text.css("background-color", "#f2f2f2"), 140);
-        text.select();
-        document.execCommand("copy");
-        text.val('');
-        text.val(content);
+		let text = $(this).prev('textarea');
+		let content = text.val();
+		text.css("background-color", "grey");
+		setTimeout(() => text.css("background-color", "#f2f2f2"), 140);
+		text.select();
+		document.execCommand("copy");
+		text.val('');
+		text.val(content);
 	});
 }
-function set_result_params(){
-	if (data.length > 0){
+function set_result_params() {
+	if (data.length > 0) {
 
-		result_params.total_sum = data[data.length-1].sum_table.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2})
-		if (data[data.length-1].sum_table > 1000000000000000000000) result_params.total_sum = data[data.length-1].sum_table;
-		
-		result_params.total_percent = data[data.length-1].percent_sum.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2})
-		if (data[data.length-1].percent_sum > 1000000000000000000000) result_params.total_percent = data[data.length-1].percent_sum;
+		result_params.total_sum = data[data.length - 1].sum_table.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
+		if (data[data.length - 1].sum_table > 1000000000000000000000) result_params.total_sum = data[data.length - 1].sum_table;
 
-		result_params.total_deposit = data[data.length-1].periodic_deposit_sum.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2})
-		if (data[data.length-1].periodic_deposit_sum > 1000000000000000000000) result_params.total_deposit = data[data.length-1].periodic_deposit_sum;
+		result_params.total_percent = data[data.length - 1].percent_sum.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
+		if (data[data.length - 1].percent_sum > 1000000000000000000000) result_params.total_percent = data[data.length - 1].percent_sum;
 
-		result_params.periodic_vklad = input.periodic_deposit.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2})
+		result_params.total_deposit = data[data.length - 1].periodic_deposit_sum.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
+		if (data[data.length - 1].periodic_deposit_sum > 1000000000000000000000) result_params.total_deposit = data[data.length - 1].periodic_deposit_sum;
+
+		result_params.periodic_vklad = input.periodic_deposit.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 		if (input.periodic_deposit > 1000000000000000000000) result_params.periodic_vklad = input.periodic_deposit;
 
-		result_params.start_deposit = input.start_capital.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2})
+		result_params.start_deposit = input.start_capital.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 		if (input.start_capital > 1000000000000000000000) result_params.start_deposit = input.start_capital;
 
 		result_params.total_srok = "";
 		var dt = Math.floor(input.time_invest / 12);
-		if (dt > 0){
+		if (dt > 0) {
 			result_params.total_srok = dt.toString() + get_year_text(dt);
 		}
 		dt = input.time_invest % 12;
@@ -1070,12 +1024,12 @@ function set_result_params(){
 		}
 
 
-	//total_srok: 0,
+		//total_srok: 0,
 
 
 	}
 }
-function get_year_text(dt){
+function get_year_text(dt) {
 	var result = " лет";
 	if ((dt > 4) && (dt < 21)) return " лет";
 	var dt_c = dt % 10;
@@ -1083,75 +1037,75 @@ function get_year_text(dt){
 	if (dt_c == 1) return " год";
 	return result;
 }
-function get_month_text(dt){
+function get_month_text(dt) {
 	if (dt == 1) return " месяц";
 	if ((dt > 1) && (dt < 5)) return " месяца";
 	if ((dt > 4) && (dt < 13)) return " месяцев";
 }
 
-function create_table(){
-	var columns = ['', 'Вложения','Процентный доход','Сумма вложений','Сумма процентов','Конечная сумма'];
+function create_table() {
+	var columns = ['', 'Вложения', 'Процентный доход', 'Сумма вложений', 'Сумма процентов', 'Конечная сумма'];
 	var rows = null;
-	if (input.report_period == "months"){
+	if (input.report_period == "months") {
 		columns[0] = 'Месяц';
 		rows = data;
 	}
-	if (input.report_period == "years"){
+	if (input.report_period == "years") {
 		columns[0] = 'Год';
 		rows = data_year;
 	}
-	
+
 	var txt = '<table class="compound-interest__result-table"><tr>';
 	for (var i = 0; i < columns.length; i++) {
-		txt += `<th>${columns[i]}</th>`; 
+		txt += `<th>${columns[i]}</th>`;
 	}
 	txt += '</tr>';
 	var val = "";
 	for (var i = 0; i < rows.length; i++) {
-		
-		txt += `<tr title="${creatData(i)}">`;
-		txt += `<td>${String(i+1)}</td>`;
 
-		val = rows[i].periodic_deposit.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2})
+		txt += `<tr title="${creatData(i)}">`;
+		txt += `<td>${String(i + 1)}</td>`;
+
+		val = rows[i].periodic_deposit.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 		if (rows[i].periodic_deposit > 1000000000000000000000) val = rows[i].periodic_deposit;
 		txt += `<td>${val}</td>`;
-		
-		val = rows[i].percent.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2})
+
+		val = rows[i].percent.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 		if (rows[i].percent > 1000000000000000000000) val = rows[i].percent;
 		txt += `<td>${val}</td>`;
 
-		val = rows[i].periodic_deposit_sum.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2})
+		val = rows[i].periodic_deposit_sum.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 		if (rows[i].periodic_deposit_sum > 1000000000000000000000) val = rows[i].periodic_deposit_sum;
 		txt += `<td>${val}</td>`;
 
-		val = rows[i].percent_sum.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2})
+		val = rows[i].percent_sum.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 		if (rows[i].percent_sum > 1000000000000000000000) val = rows[i].percent_sum;
 		txt += `<td>${val}</td>`;
 
-		val = rows[i].sum_table.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2})
+		val = rows[i].sum_table.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 })
 		if (rows[i].sum_table > 1000000000000000000000) val = rows[i].sum_table;
 		txt += `<td>${val}</td>`;
 
-		txt +='</tr>';
+		txt += '</tr>';
 	}
 	txt += '</table>';
 	$('#chart_table_div').html(txt);
 }
-function create_chart(){
+function create_chart() {
 
 
 	var c1 = input.start_capital;
 	var c2 = 0;
 	var c3 = 0;
 	var title = "";
-	if (input.report_period == "months"){
+	if (input.report_period == "months") {
 		title = "месяцы";
 		for (var i = 0; i < data.length; i++) {
 			c2 = data[i].periodic_deposit_sum;
 			c3 = data[i].percent_sum;
 		}
 	}
-	if (input.report_period == "years"){
+	if (input.report_period == "years") {
 		title = "годы";
 		for (var i = 0; i < data_year.length; i++) {
 			c2 = data_year[i].periodic_deposit_sum;
@@ -1164,7 +1118,7 @@ function create_chart(){
 		focusTarget: 'category',
 		colors: ['#0E4499', '#3B9224', '#F3863D'],
 		legend: { position: 'none' },
-		animation:{
+		animation: {
 			duration: 200,
 			easing: 'out',
 			startup: true
@@ -1176,33 +1130,33 @@ function create_chart(){
 			slantedText: false,
 			maxAlternation: 1,
 			title: title,
-			titleTextStyle:{
+			titleTextStyle: {
 				italic: false
 			},
 		},
-		tooltip:{
+		tooltip: {
 			isHtml: true
 		},
-		height:500,
+		height: 500,
 	};
 }
-function createToolTip(i, c1, c2, c3){
+function createToolTip(i, c1, c2, c3) {
 	var date = new Date();
-	if (input.report_period == "months"){
+	if (input.report_period == "months") {
 		date.setMonth(date.getMonth() + i + 1);
 	}
-	if (input.report_period == "years"){
+	if (input.report_period == "years") {
 		date.setFullYear(date.getFullYear() + i + 1);
 	}
-	var formatDate = date.toLocaleString('ru', {year: 'numeric', month: 'long'});
-	var c1_korr = c1.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2});
+	var formatDate = date.toLocaleString('ru', { year: 'numeric', month: 'long' });
+	var c1_korr = c1.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
 	if (c1 > 1000000000000000000000) c1_korr = c1;
-	var c2_korr = c2.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2});
+	var c2_korr = c2.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
 	if (c2 > 1000000000000000000000) c2_korr = c2;
-	var c3_korr = c3.toLocaleString('ru-RU', {maximumFractionDigits: 2, minimumFractionDigits: 2});
+	var c3_korr = c3.toLocaleString('ru-RU', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
 	if (c3 > 1000000000000000000000) c3_korr = c3;
 
-	var element =  `<div style='padding:10px;white-space:nowrap'>
+	var element = `<div style='padding:10px;white-space:nowrap'>
 					<p style='margin:0;padding:0;line-height:1;font-weight:600'>${formatDate}</p>
 					<p style='margin:0;padding:0;line-height:1'><span style='color:#7FB43B;font-size:1.5em'>●</span> Доход от процентов: <span style='font-weight:600'>` + c3_korr + `</span></p>
 					<p style='margin:0;padding:0;line-height:1'><span style='color:#0000FF;font-size:1.5em'>●</span> Добавленные средства: <span style='font-weight:600'>` + c2_korr + `</span></p>
