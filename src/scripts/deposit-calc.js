@@ -12,7 +12,7 @@ function clearFields(e) {
     sumAllDeposits.text("")
 };
 
-function selectCapit (e) {  
+function selectCapit(e) {
     for (let i = 0; i < calcInputCapitalization.length; i++) {
         if (calcInputCapitalization[i].selected) {
             if (calcInputCapitalization[i].dataset.capitalization) {
@@ -23,7 +23,7 @@ function selectCapit (e) {
         }
     }
 }
-function selectDeposit (e) {  
+function selectDeposit(e) {
     for (let i = 0; i < calcInputDepositPeriod.length; i++) {
         if (calcInputDepositPeriod[i].selected) {
             if (calcInputDepositPeriod[i].dataset.depositperiod) {
@@ -36,13 +36,13 @@ function selectDeposit (e) {
 function initSumTest(sum) {
     if (sum.length > 5) {
         // `.0`
-   console.log(123);
+        console.log(123);
     }
 }
 
 calcDepositBtn.on('click', function (e) {
     clearFields();
-    
+
     const initialSum = parseFloat($('.calc-input__sum').val());
     const deadlines = parseFloat($('.calc-input__deadlines').val());
     const bet = parseFloat($('.calc-input__bet').val());
@@ -55,7 +55,7 @@ calcDepositBtn.on('click', function (e) {
     const finalSumVal = Math.floor(Math.pow(initialSum * (1 + (bet * 0.01) / capitalization), deadlines * capitalization));
     const allPercentsVal = 1;
     const sumAllDepositsVal = 1;
-    
+
     // console.log( bet * 0.01 / 12);
     finalSum.append(finalSumVal)
 });

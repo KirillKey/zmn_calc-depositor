@@ -9,6 +9,15 @@
     @include tablets{
         max-width: 700px;
     }
+    @include phones-album{
+        max-width: 440px;
+    }
+    @include phones-new-port{
+      max-width: 380px;
+    }
+    @include phones-port{
+        max-width: 290px;
+    }
 }
 
 .deposit-calc {
@@ -17,6 +26,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .deposit-calc__title{
     // margin-bottom: 40px;
     margin-bottom: -2px;
@@ -25,6 +35,20 @@
     border-radius: 0px;
     border: 2px solid rgba(101, 175, 4, 0.5);
     border-bottom: transparent;
+
+    @include phones-album{
+        text-align: center;
+        max-width: 410px;
+        font-size: 24px;
+    }
+    @include phones-new-port{
+        font-size: 18px;
+    }
+    @include phones-port{
+        margin-bottom: -1px;
+        font-size: 16px;
+    }
+
 }
 
 .deposit-calc__wrapper {
@@ -48,12 +72,21 @@
         display: flex;
         flex-direction: column;
     }
+    @include phones-album{
+        flex-direction: column;
+    }
+    @include phones-port{
+        
+    }
 }
 
 .deposit-calc__item__title{
     text-align: center;
     font-size: 18px;
     margin-bottom: 8px;
+    @include phones-new-port{
+        font-size: 16px;
+    }
 }
 
 .deposit__right-col {
@@ -61,6 +94,9 @@
     
     @include tablets{
         margin-left: 120px;
+    }
+    @include phones-album{
+        margin-left: 0px;
     }
 }
 
@@ -95,6 +131,11 @@
 .deposit-calc__result{
     margin-top: 16px;
     width: 288px;
+    
+    @include phones-port{
+        width: auto;
+        padding: 0 34px;
+    }
 }
 
 .deposit-calc__result__item {
@@ -112,6 +153,12 @@
     // position: absolute;
     // top: 424px;
     // left: 324px;
+    @include phones-album{
+        margin-top: 40px;
+    }
+    @include phones-port{
+        
+    }
 }
 
 .deposit-btn {

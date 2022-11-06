@@ -4,8 +4,8 @@ $monitor: 1600px;
 $notebook: 1024px;
 $tablets: 768px;
 $phones-album: 480px;
+$phones-new-port: 420px;
 $phones-port: 320px;
-
 @mixin full-monitor {
  @media screen and (max-width: $full-monitor) {
    @content;   
@@ -36,12 +36,17 @@ $phones-port: 320px;
   }
 }
 
+ @mixin phones-new-port {
+  @media screen and (max-width: $phones-new-port) {
+    @content;   
+  }
+}
+
  @mixin phones-port {
   @media screen and (max-width: $phones-port) {
     @content;   
   }
 }
-
 
  @function rem($px) {
   @return $px / $basefontssize + 0rem;
