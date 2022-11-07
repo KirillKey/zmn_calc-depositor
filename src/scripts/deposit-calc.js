@@ -8,9 +8,12 @@ const calcInputDepositPeriod = document.querySelectorAll('.calc-input__deposit_p
 
 depositInput.on('input', function (e) {
     const numInput = this.value.replace(/\s/g, '');
-    this.value = (parseFloat(numInput)).toLocaleString('ru-Ru')
+    if (this.value.length <= 0) {
+        this.value = 0;
+    } else {
+        this.value = (parseFloat(numInput)).toLocaleString('ru')
+    }
 })
-
 function clearFieldsResult(e) {
     finalSum.text("")
     allPercents.text("")
@@ -36,15 +39,10 @@ function selectDeposit(e) {
         }
     }
 };
-function initialSumTest(sum) {
-    if (sum.length > 5) {
-        // `.0`
-        console.log(123);
-    }
-};
+
+
 function pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal) {
-    // finalSum.append(finalSumVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
-    finalSum.append(finalSumVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+    finalSum.append( finalSumVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     allPercents.append(allPercentsVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     sumAllDeposits.append(sumAllDepositsVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
 };
@@ -58,17 +56,19 @@ calcDepositBtn.on('click', function (e) {
     const addDeposit = parseFloat($('.calc-input__adds-deposit').val().replace(/\s/g, ""));
     const addDepositOption = selectDeposit();
 
-    // Основаная формула finalSumVal готова. Настроить deadlines и capitalization и она будет работать корректно.
-    const finalSumVal = Math.pow(initialSum * (1 + bet / capitalization), deadlines  * capitalization);
+    // Основаная формула finalSumVal готова. Настроить deadlines и она будет работать корректно.
+    const finalSumVal = Math.pow(initialSum * (1 + bet / capitalization), deadlines * capitalization);
     const allPercentsVal = finalSumVal - initialSum;
-    const sumAllDepositsVal =  addDeposit + ' - no done';
-
+    const sumAllDepositsVal = addDeposit + ' - no done';
+    
     pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal)
+    
+    // pushResult(finalSumVal / 1e44, allPercentsVal, sumAllDepositsVal)
+    // равно след-ему при сумме 10 000руб. =>
+    // pushResult(finalSumVal / 100000000000000000000000000000000000000000000, allPercentsVal, sumAllDepositsVal)
 });
 
-//
-//
-//
-//
-//
-// Нужно подставить корректные значения и т.п. (скоро допишу)
+
+// if (num.length > num) {
+//     num / 100000000000000000000000000000000000000000000 + i;
+// }
