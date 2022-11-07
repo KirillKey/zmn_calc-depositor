@@ -45,28 +45,52 @@ function pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal) {
     finalSum.append(finalSumVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     allPercents.append(allPercentsVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     sumAllDeposits.append(sumAllDepositsVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+    
+    console.log(finalSumVal);
+function toFixed(x) {
+  if (Math.abs(x) < 1.0) {
+    var e = parseInt(x.toString().split('e-')[1]);
+    if (e) {
+        x *= Math.pow(10,e-1);
+        x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
+    }
+  } else {
+    var e = parseInt(x.toString().split('+')[1]);
+    if (e > 20) {
+        e -= 20;
+        x /= Math.pow(10,e);
+        x += (new Array(e+1)).join('0');
+    }
+    }
+    console.log(x );
+    console.log(Math.trunc(x) );
+    return x;
+    }
+    // toFixed(finalSumVal)
 };
 
 calcDepositBtn.on('click', function (e) {
     clearFieldsResult();
     const initialSum = parseFloat($('.calc-input__sum').val().replace(/\s/g, ""));
-    const deadlines = parseFloat($('.calc-input__deadlines').val().replace(/\s/g, ""));
+    const deadlinesAll = parseFloat($('.calc-input__deadlines').val().replace(/\s/g, ""));
+    
+    const deadlinesDays = parseFloat($('.calc-input__deadlines').val().replace(/\s/g, ""));
+    const deadlinesMonth = parseFloat($('.calc-input__deadlines').val().replace(/\s/g, ""));
+
     const bet = (parseFloat($('.calc-input__bet').val().replace(/\s/g, "")) / 100);
     const capitalization = selectCapit();
     const addDeposit = parseFloat($('.calc-input__adds-deposit').val().replace(/\s/g, ""));
     const addDepositOption = selectDeposit();
-    
-    // Основаная формула finalSumVal готова. Настроить deadlines и она будет работать корректно.
-    const finalSumVal = Math.pow(initialSum * (1 + bet / capitalization), deadlines * capitalization);
+
+    // Основаная формула finalSumVal готова. Настроить deadlinesAll и она будет работать корректно.
+    const finalSumVal = Math.pow(initialSum * (1 + bet / capitalization), deadlinesAll * capitalization);
     const allPercentsVal = finalSumVal - initialSum;
     const sumAllDepositsVal = (addDeposit * 12) / addDepositOption;
-    
-    pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal)
-    
+    // pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal)
+    pushResult(finalSumVal / 1e44, allPercentsVal, sumAllDepositsVal)
 });
 
 
-// pushResult(finalSumVal / 1e44, allPercentsVal, sumAllDepositsVal)
 // if (num.length > num) {
 //     num / 100000000000000000000000000000000000000000000 + i;
 // }

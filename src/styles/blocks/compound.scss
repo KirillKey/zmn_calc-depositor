@@ -110,9 +110,9 @@
 }
 
 
-// .deposit-calc__item-input {
-
-// }
+.deposit-calc__item-input--deadlines-row {
+    display: flex;
+}
 
 .deposit-calc__input{
     padding: 10px;
@@ -121,6 +121,25 @@
     &:focus {outline: blue;}
 }
 
+.calc-input__deadline--deadlines-col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+    &:last-child{
+        margin-right: 0px;
+    }
+}
+
+.calc-input__deadline{
+
+    &--days{
+        width: 110px;
+    }
+    &--month{
+        width: 110px;
+    }
+}
 .deposit-calc__select{
     padding: 10px;
     border-radius: 6px;

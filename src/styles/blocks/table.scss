@@ -10,6 +10,9 @@
     @include tablets{
         min-width: 0px;
     }
+    @include phones-album{
+        max-width: 410px;
+    }
 }
 
 .rates-currency__table {
@@ -26,6 +29,12 @@
     font-size: 14px;
     padding: 8px;
 }
+.rates-currency__table-tr--head{
+    vertical-align: top;
+    @include phones-album {
+  
+    }
+}
 
 .rates-currency__table-tbody td {
     background-color: #f0f8ff;
@@ -33,7 +42,11 @@
     padding: 6px 28px;
     border-radius: 12px;
     border: 1px rgba(128, 128, 128, 0.075) outset;
+    @include phones-album {
+        padding: 4px 8px;
+    }
 }
+
 .rates-currency__table-tbody td:hover {
     border: 1px rgba(128, 128, 128, 0.2) outset;
     box-shadow: -1px -1px 0px 0px #65af0491;
