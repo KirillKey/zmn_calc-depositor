@@ -42,7 +42,7 @@ function selectDeposit(e) {
 
 
 function pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal) {
-    finalSum.append( finalSumVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
+    finalSum.append(finalSumVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     allPercents.append(allPercentsVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     sumAllDeposits.append(sumAllDepositsVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
 };
@@ -55,20 +55,18 @@ calcDepositBtn.on('click', function (e) {
     const capitalization = selectCapit();
     const addDeposit = parseFloat($('.calc-input__adds-deposit').val().replace(/\s/g, ""));
     const addDepositOption = selectDeposit();
-
+    
     // Основаная формула finalSumVal готова. Настроить deadlines и она будет работать корректно.
     const finalSumVal = Math.pow(initialSum * (1 + bet / capitalization), deadlines * capitalization);
     const allPercentsVal = finalSumVal - initialSum;
-    const sumAllDepositsVal = addDeposit + ' - no done';
+    const sumAllDepositsVal = (addDeposit * 12) / addDepositOption;
     
     pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal)
     
-    // pushResult(finalSumVal / 1e44, allPercentsVal, sumAllDepositsVal)
-    // равно след-ему при сумме 10 000руб. =>
-    // pushResult(finalSumVal / 100000000000000000000000000000000000000000000, allPercentsVal, sumAllDepositsVal)
 });
 
 
+// pushResult(finalSumVal / 1e44, allPercentsVal, sumAllDepositsVal)
 // if (num.length > num) {
 //     num / 100000000000000000000000000000000000000000000 + i;
 // }
