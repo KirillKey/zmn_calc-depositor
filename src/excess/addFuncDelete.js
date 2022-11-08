@@ -96,10 +96,15 @@
 
 // All formulas
 const finalSumVal = finalSumFormula(initialSum, bet, capitalization, deadlinesAll, capitalization);
-const allPercentsVal = finalSumVal - initialSum;
-const sumAllDepositsVal = (addDeposit * 12) / addDepositOption;
+const allPercentsVal = allPercentsFormula(finalSumVal ,initialSum);
+const sumAllDepositsVal = sumAllDepositsFormula(addDeposit,ddDepositOption);
 
 function finalSumFormula(initialSum, bet, capitalization, deadlinesAll, capitalization) {
-    return initialSum * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);
-    
+    return initialSum * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);  
+}
+function allPercentsFormula(finalSumVal, initialSum) {
+    return finalSumVal - initialSum;
+}
+function sumAllDepositsFormula(addDeposit, addDepositOption) {
+    return   (addDeposit * 12) / addDepositOption;
 }
