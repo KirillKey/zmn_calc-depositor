@@ -46,36 +46,42 @@ function pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal) {
     allPercents.append(allPercentsVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     sumAllDeposits.append(sumAllDepositsVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     
-    console.log(finalSumVal);
-function toFixed(x) {
-  if (Math.abs(x) < 1.0) {
-    var e = parseInt(x.toString().split('e-')[1]);
-    if (e) {
-        x *= Math.pow(10,e-1);
-        x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
-    }
-  } else {
-    var e = parseInt(x.toString().split('+')[1]);
-    if (e > 20) {
-        e -= 20;
-        x /= Math.pow(10,e);
-        x += (new Array(e+1)).join('0');
-    }
-    }
-    console.log(x );
-    console.log(Math.trunc(x) );
-    return x;
-    }
-    // toFixed(finalSumVal)
+    // console.log(finalSumVal);
+// function toFixed(x) {
+//   if (Math.abs(x) < 1.0) {
+//     var e = parseInt(x.toString().split('e-')[1]);
+//     if (e) {
+//         x *= Math.pow(10, e - 1);
+//     console.log(x);
+        
+//         x = '0.' + (new Array(e)).join('0') + x.toString().substring(2);
+//     console.log(x);
+
+//     }
+//   } else {
+//     var e = parseInt(x.toString().split('+')[1]);
+//     if (e > 20) {
+//         e -= 20;
+//         x /= Math.pow(10, e);
+//     }
+//     }
+//     console.log(x);
+//     // console.log(Number.parseFloat(x).toFixed(0) );
+//     return x;
+//     }
+//     toFixed(finalSumVal)
 };
 
 calcDepositBtn.on('click', function (e) {
     clearFieldsResult();
     const initialSum = parseFloat($('.calc-input__sum').val().replace(/\s/g, ""));
-    const deadlinesAll = parseFloat($('.calc-input__deadlines').val().replace(/\s/g, ""));
-    
-    const deadlinesDays = parseFloat($('.calc-input__deadlines').val().replace(/\s/g, ""));
-    const deadlinesMonth = parseFloat($('.calc-input__deadlines').val().replace(/\s/g, ""));
+
+    const deadlinesAll = parseFloat($('.calc-input__deadlines').val().replace(/\s/g, "")) / 12;
+    const deadlinesDays = parseFloat($('.calc-input__deadline--days').val().replace(/\s/g, ""));
+    const deadlinesMonth = parseFloat($('.calc-input__deadline--month').val().replace(/\s/g, ""));
+    // формулы для расчета дней и месяцев. не готово.
+    // const deadlinesMonthVal = parseInt((deadlinesMonth) / (24 * 3600 * 1000));
+    const deadlinesMonthVal = parseInt((deadlinesMonth) / (24 * 3600 * 1000));
 
     const bet = (parseFloat($('.calc-input__bet').val().replace(/\s/g, "")) / 100);
     const capitalization = selectCapit();
@@ -83,14 +89,14 @@ calcDepositBtn.on('click', function (e) {
     const addDepositOption = selectDeposit();
 
     // Основаная формула finalSumVal готова. Настроить deadlinesAll и она будет работать корректно.
-    const finalSumVal = Math.pow(initialSum * (1 + bet / capitalization), deadlinesAll * capitalization);
+    // const finalSumVal = Math.pow(initialSum * (1 + bet / capitalization), deadlinesAll * capitalization);
+    const finalSumVal = Math.pow(initialSum * (1 + bet / capitalization), deadlinesMonthVal * capitalization);
     const allPercentsVal = finalSumVal - initialSum;
     const sumAllDepositsVal = (addDeposit * 12) / addDepositOption;
-    // pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal)
-    pushResult(finalSumVal / 1e44, allPercentsVal, sumAllDepositsVal)
+
+    pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal)
+    // pushResult(finalSumVal / 1e44, allPercentsVal, sumAllDepositsVal)
+
+    // console.log(parseInt((deadlinesDays) / (24 * 3600 * 1000)));
+    // console.log(parseInt((deadlinesMonth) / (24 * 3600 * 1000)));
 });
-
-
-// if (num.length > num) {
-//     num / 100000000000000000000000000000000000000000000 + i;
-// }
