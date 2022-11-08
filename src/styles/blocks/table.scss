@@ -13,6 +13,10 @@
     @include phones-album{
         max-width: 410px;
     }
+    @include phones-new-port{
+        max-width: 370px;
+        border-spacing: 6px;
+    }
 }
 
 .rates-currency__table {
@@ -23,6 +27,9 @@
     border-collapse: separate;
     border-spacing: 12px;
 
+    @include phones-new-port{
+        border-spacing: 6px;
+    }
 }
 
 .rates-currency__table-tbody th {
@@ -44,6 +51,10 @@
     border: 1px rgba(128, 128, 128, 0.075) outset;
     @include phones-album {
         padding: 4px 8px;
+    }
+    @include phones-new-port{
+        padding: 4px 6px;
+    
     }
 }
 

@@ -149,6 +149,7 @@
 .deposit-calc__select{
     padding: 10px;
     border-radius: 6px;
+    margin-top: 4px;
 }
 
 .deposit-btn {
@@ -193,16 +194,21 @@
 }
 
 .deposit-calc__submit{
-    // margin-top: 330px;
+    margin-top: 332px;
     // position: absolute;
     // top: 424px;
     // left: 324px;
+    @include notebook{
+        margin-top: 40px;
+    }
+    @include tablets{
+        margin-top: 364px;
+    }
     @include phones-album{
-        // margin-top: 40px;
+        margin-top: 40px;
     }
     @include phones-port{
-        // margin-top: 30px;
-        
+        margin-top: 30px;
     }
 }
 
