@@ -1,4 +1,5 @@
 const depositInput = $('.deposit-calc__input');
+const depositOptionsAll = $('.deposit-calc__select');
 const calcDepositBtn = $('.calc-deposit-btn');
 const finalSum = $('.deposit__result__out--final-sum');
 const allPercents = $('.deposit__result__out--all-percents');
@@ -45,28 +46,33 @@ function pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal) {
     sumAllDeposits.append(sumAllDepositsVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
 };
 
-calcDepositBtn.on('click', function (e) {
-    clearFieldsResult();
-    const initialSum = parseFloat($('.calc-input__sum').val().replace(/\s/g, ""));
-    const deadlinesDays = $('.calc-input__deadline--days').val().replace(/\s/g, "");
-    const deadlinesMonth = $('.calc-input__deadline--month').val().replace(/\s/g, "");
-    
-    const deadlinesDaysVal = parseFloat((deadlinesDays / 30) / 12);
-    const deadlinesMonthVal = parseFloat(deadlinesMonth / 12);
-    const deadlinesAll = parseFloat(deadlinesDaysVal + deadlinesMonthVal);
+depositInput.on('input', function (e) {
+    depositOptionsAll.on('change', function (e) {
+        clearFieldsResult();
+        const initialSum = parseFloat($('.calc-input__sum').val().replace(/\s/g, ""));
+        const deadlinesDays = $('.calc-input__deadline--days').val().replace(/\s/g, "");
+        const deadlinesMonth = $('.calc-input__deadline--month').val().replace(/\s/g, "");
 
-    const bet = (parseFloat($('.calc-input__bet').val().replace(/\s/g, "")) / 100);
-    const capitalization = selectCapit();
-    const addDeposit = parseFloat($('.calc-input__adds-deposit').val().replace(/\s/g, ""));
-    const addDepositOption = selectDeposit();
+        const deadlinesDaysVal = parseFloat((deadlinesDays / 30) / 12);
+        const deadlinesMonthVal = parseFloat(deadlinesMonth / 12);
+        const deadlinesAll = parseFloat(deadlinesDaysVal + deadlinesMonthVal);
 
-    const finalSumVal = initialSum * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);
-    const allPercentsVal = finalSumVal - initialSum;
-    const sumAllDepositsVal = (addDeposit * (deadlinesAll * 12)) / addDepositOption;
-    const sumAllDepositsWithDeposit = sumAllDepositsVal * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);
-    
-    const finalSumWithDeposit  = finalSumVal + (sumAllDepositsWithDeposit)
-    const allPercentsWithDeposit  = allPercentsVal  + (sumAllDepositsWithDeposit);
+        const bet = (parseFloat($('.calc-input__bet').val().replace(/\s/g, "")) / 100);
+        const capitalization = selectCapit();
+        const addDeposit = parseFloat($('.calc-input__adds-deposit').val().replace(/\s/g, ""));
+        const addDepositOption = selectDeposit();
 
-    pushResult(finalSumWithDeposit, allPercentsWithDeposit, sumAllDepositsVal)
+        const finalSumVal = initialSum * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);
+        const allPercentsVal = finalSumVal - initialSum;
+        const sumAllDepositsVal = (addDeposit * (deadlinesAll * 12)) / addDepositOption;
+        const sumAllDepositsWithDeposit = sumAllDepositsVal * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);
+
+        const finalSumWithDeposit = finalSumVal + (sumAllDepositsWithDeposit)
+        // const allPercentsWithDeposit  = allPercentsVal  + sumAllDepositsWithDeposit;
+        const allPercentsWithDeposit = sumAllDepositsWithDeposit - sumAllDepositsVal;
+        console.log(initialSum);
+        console.log(finalSumVal);
+
+        pushResult(finalSumWithDeposit, allPercentsWithDeposit, sumAllDepositsVal)
+    })
 });

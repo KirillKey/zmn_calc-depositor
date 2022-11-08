@@ -118,6 +118,7 @@
 
 .deposit-calc__item-input--deadlines-row {
     display: flex;
+    align-items: flex-start;
 }
 
 .deposit-calc__input{
@@ -127,14 +128,15 @@
     &:focus {outline: blue;}
 }
 
-.calc-input__deadline--deadlines-col{
+.calc-input__deadline--col{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 10px;
-    &:last-child{
-        margin-right: 0px;
-    }
+}
+
+.active-deadline.calc-input__deadline--col{
+    &-days{display: none;}
+    &-month{display: none;}
 }
 
 .calc-input__deadline{
@@ -146,10 +148,18 @@
         width: 110px;
     }
 }
+
 .deposit-calc__select{
     padding: 10px;
     border-radius: 6px;
     margin-top: 4px;
+    
+    &--deadlines{
+    padding: 10px;
+    width: 98px;
+    margin-top: 0px;
+    margin-left: 4px;
+    }
 }
 
 .deposit-btn {
@@ -202,7 +212,7 @@
         margin-top: 40px;
     }
     @include tablets{
-        margin-top: 364px;
+        // margin-top: 364px;
     }
     @include phones-album{
         margin-top: 40px;

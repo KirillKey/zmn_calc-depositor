@@ -33,21 +33,29 @@
                             </div>
                         </div>
                         <div class="deposit-calc__item">
-                            <h4 class="deposit-calc__item__title">Сроки вклада</h4>
+                            <h4 class="deposit-calc__item__title">Сроки вклада:</h4>
+
                             <div
                                 class="deposit-calc__item-input deposit-calc__item-input--deadlines deposit-calc__item-input--deadlines-row">
-                                <div class="calc-input__deadline calc-input__deadline--deadlines-col">
-                                    <h3 class="deposit-calc__item__title--deadlines">Дни</h3>
-                                    <input type="text"
+                                <div
+                                    class="calc-input__deadline calc-input__deadline--col calc-input__deadline--col-days ">
+                                    <h3 class="deposit-calc__item__title--deadlines" hidden>Дни</h3>
+                                    <input type="text" title=""
                                         class="deposit-calc__input calc-input__deadlines calc-input__deadline--days"
                                         value="0">
                                 </div>
-                                <div class="calc-input__deadline calc-input__deadline--deadlines-col">
-                                    <h3 class="deposit-calc__item__title--deadlines">Месяцы</h3>
-                                    <input type="text"
+                                <div
+                                    class="calc-input__deadline calc-input__deadline--col calc-input__deadline--col-month active-deadline">
+                                    <h3 class="deposit-calc__item__title--deadlines" hidden>Месяцы</h3>
+                                    <input type="text" title=""
                                         class="deposit-calc__input calc-input__deadlines calc-input__deadline--month"
                                         value="12">
                                 </div>
+                                <select class="deposit-calc__select deposit-calc__select--deadlines" name="deadlines">
+                                    <option value="" disabled>Сроки вклада</option>
+                                    <option value="дни">Месяцы</option>
+                                    <option value="дни">Дни</option>
+                                </select>
                             </div>
                         </div>
                         <div class="deposit-calc__item">
@@ -63,24 +71,24 @@
                             <div class="deposit-calc__item-select">
                                 <select class="deposit-calc__select calc-input__capitalizations" name="capitalizations">
                                     <option value="1" data-capitalization="no"
-                                        class="capitalization capitalization--no">
+                                        class="capitalization capitalization--no deposit-calc__options">
                                         Без капитализации
                                     </option>
                                     <option value="365" data-capitalization="day"
-                                        class="capitalization capitalization--day">
+                                        class="capitalization capitalization--day deposit-calc__options">
                                         Ежедневно</option>
                                     <option value="12" data-capitalization="month"
-                                        class="capitalization capitalization--month">
+                                        class="capitalization capitalization--month deposit-calc__options">
                                         1 раз в месяц
                                     </option>
                                     <option value="4" data-capitalization="quarter"
-                                        class="capitalization capitalization--quarter">
+                                        class="capitalization capitalization--quarter deposit-calc__options">
                                         1 раз в квартал</option>
                                     <option value="2" data-capitalization="half_year"
-                                        class="capitalization capitalization--half_year">
+                                        class="capitalization capitalization--half_year deposit-calc__options">
                                         1 раз в полгода</option>
                                     <option value="1" data-capitalization="year"
-                                        class="capitalization capitalization--year" selected>
+                                        class="capitalization capitalization--year deposit-calc__options" selected>
                                         1 раз в год
                                     </option>
                                 </select>
@@ -89,20 +97,24 @@
                         <div class="deposit-calc__item">
                             <h4 class="deposit-calc__item__title">Пополнение вкладов</h4>
                             <div class="deposit-calc__item-input">
-                                <input type="text" class="deposit-calc__input calc-input__adds-deposit" value="22">
+                                <input type="text" class="deposit-calc__input calc-input__adds-deposit" value="2241">
                             </div>
                             <div class="deposit-calc__item-select">
                                 <select class="deposit-calc__select calc-input__deposit_period" name="deposit_period">
-                                    <option value="1" class="deposit_period__val" data-depositPeriod="day">1 раз в
+                                    <option value="1" class=" deposit_period__val deposit-calc__options"
+                                        data-depositPeriod="day">1 раз в
                                         месяц
                                     </option>
-                                    <option value="3" class="deposit_period__val" data-depositPeriod="quarter">1 раз в
+                                    <option value="3" class="deposit_period__val deposit-calc__options"
+                                        data-depositPeriod="quarter">1 раз в
                                         квартал
                                     </option>
-                                    <option value="6" class="deposit_period__val" data-depositPeriod="half_year">1 раз
+                                    <option value="6" class="deposit_period__val deposit-calc__options"
+                                        data-depositPeriod="half_year">1 раз
                                         в полгода
                                     </option>
-                                    <option value="12" class="deposit_period__val" data-depositPeriod="year">1 раз в
+                                    <option value="12" class="deposit_period__val deposit-calc__options"
+                                        data-depositPeriod="year">1 раз в
                                         год
                                     </option>
                                 </select>
