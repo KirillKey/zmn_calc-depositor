@@ -40,6 +40,7 @@ function selectDeposit(e) {
     }
 };
 
+
 function pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal) {
     finalSum.append(finalSumVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     allPercents.append(allPercentsVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
@@ -61,9 +62,9 @@ calcDepositBtn.on('click', function (e) {
     const addDeposit = parseFloat($('.calc-input__adds-deposit').val().replace(/\s/g, ""));
     const addDepositOption = selectDeposit();
 
-    const finalSumVal = (initialSum * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization)) + sumAllDepositsVal;
+    const finalSumVal = (initialSum * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization));
     const allPercentsVal = finalSumVal - initialSum;
     const sumAllDepositsVal = (addDeposit * 12) / addDepositOption;
 
-    pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal);
+    pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal)
 });
