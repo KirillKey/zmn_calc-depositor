@@ -75,15 +75,12 @@ calcDepositBtn.on('click', function (e) {
     clearFieldsResult();
     const initialSum = parseFloat($('.calc-input__sum').val().replace(/\s/g, ""));
 
-    // const deadlinesAll = $('.calc-input__deadlines').val().replace(/\s/g, "");
+    const deadlinesAll = $('.calc-input__deadlines').val().replace(/\s/g, "");
     const deadlinesDays = $('.calc-input__deadline--days').val().replace(/\s/g, "");
     const deadlinesMonth = $('.calc-input__deadline--month').val().replace(/\s/g, "");
     //
-    // const deadlinesDaysVal = parseFloat(deadlinesDays / 365);
-    const deadlinesDaysVal = deadlinesDays / 365;
-    console.log(Math.floor(deadlinesDaysVal));
-    const deadlinesMonthVal = parseFloat(deadlinesMonth / 12);
-    const deadlinesAll = parseFloat(deadlinesDaysVal + deadlinesMonthVal);
+    const deadlinesDaysVal = parseInt(deadlinesDays / 365) ;
+    const deadlinesMonthVal = parseInt((deadlinesMonth) / 12);
 
     const bet = (parseFloat($('.calc-input__bet').val().replace(/\s/g, "")) / 100);
     const capitalization = selectCapit();
@@ -91,9 +88,11 @@ calcDepositBtn.on('click', function (e) {
     const addDepositOption = selectDeposit();
 
     // Основаная формула finalSumVal готова. Настроить deadlinesAll и она будет работать корректно.
-    const finalSumVal = initialSum * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);
+    // const finalSumVal = Math.pow(initialSum * (1 + bet / capitalization), deadlinesAll * capitalization);
+    const finalSumVal = initialSum * Math.pow((1 + bet / capitalization), deadlinesDaysVal * capitalization);
     const allPercentsVal = finalSumVal - initialSum;
     const sumAllDepositsVal = (addDeposit * 12) / addDepositOption;
 
     pushResult(finalSumVal, allPercentsVal, sumAllDepositsVal)
+    // pushResult(finalSumVal / 1e44, allPercentsVal, sumAllDepositsVal)
 });
