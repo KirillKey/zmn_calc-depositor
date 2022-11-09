@@ -128,16 +128,6 @@
     &:focus {outline: blue;}
 }
 
-.calc-input__deadline--col{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.active-deadline.calc-input__deadline--col{
-    &-days{display: none;}
-    &-month{display: none;}
-}
 
 .calc-input__deadline{
 
@@ -147,6 +137,22 @@
     &--month{
         width: 110px;
     }
+}
+
+.calc-input__deadline--col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calc-input__deadlines {
+    display: none;
+}
+
+
+.calc-input__deadline__checkboxs{
+    display: flex;
+    flex-direction: column;
 }
 
 .deposit-calc__select{
