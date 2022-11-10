@@ -34,30 +34,39 @@
                         </div>
                         <div class="deposit-calc__item">
                             <h4 class="deposit-calc__item__title">Сроки вклада:</h4>
-
+                            <!-- <select class="deposit-calc__select calc-input__capitalizations" name="capitalizations">
+                                <option value="" class="capitalization capitalization--no deposit-calc__options">
+                                    днях
+                                </option>
+                                <option value="" class="capitalization capitalization--no deposit-calc__options">
+                                    месяцах
+                                </option>
+                            </select> -->
+                            <div class="calc-input__deadline__checkboxs">
+                                <label class="calc-input__deadline__checkboxs__label">
+                                    <input type="checkbox" id="input__checkbox--days"
+                                        class="deposit-calc__input calc-input__checkbox"
+                                        data-deadlineCheck="input__checkbox--days">Дни
+                                </label>
+                                <label class="calc-input__deadline__checkboxs__label">
+                                    <input type="checkbox" id="input__checkbox--month"
+                                        class="deposit-calc__input calc-input__checkbox"
+                                        data-deadlineCheck="input__checkbox--month" checked>Месяцы
+                                </label>
+                            </div>
                             <div
                                 class="deposit-calc__item-input deposit-calc__item-input--deadlines deposit-calc__item-input--deadlines-row">
-                                <div class=" calc-input__deadlines " id="input__checkbox--days">
+                                <div class=" calc-input__deadlines " id="div__checkbox--days"
+                                    data-deadlineCheck="input__checkbox--days">
                                     <!-- <h3 class="deposit-calc__item__title--deadlines">Дни</h3> -->
                                     <input type="text" class="deposit-calc__input" id="calc-input__deadline--days"
-                                        value="0">
+                                        value="30">
                                 </div>
-                                <div class=" calc-input__deadlines" id="input__checkbox--month">
+                                <div class=" calc-input__deadlines" id="div__checkbox--month"
+                                    data-deadlineCheck="input__checkbox--month">
                                     <!-- <h3 class="deposit-calc__item__title--deadlines">Месяцы</h3> -->
                                     <input type="text" class="deposit-calc__input" id="calc-input__deadline--month"
                                         value="12">
-                                </div>
-                                <div class=" calc-input__deadline__checkboxs">
-                                    <label class="calc-input__deadline__checkboxs__label">
-                                        <input type="checkbox" id="input__checkbox--days"
-                                            class="deposit-calc__input calc-input__checkbox"
-                                            data-deadlineCheck="input__checkbox--days">Дни
-                                    </label>
-                                    <label class="calc-input__deadline__checkboxs__label">
-                                        <input type="checkbox" id="input__checkbox--month"
-                                            class="deposit-calc__input calc-input__checkbox"
-                                            data-deadlineCheck="input__checkbox--month">Месяцы
-                                    </label>
                                 </div>
                             </div>
                         </div>
