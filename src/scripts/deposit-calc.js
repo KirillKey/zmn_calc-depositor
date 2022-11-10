@@ -2,6 +2,8 @@ const depositInputAll = $('.deposit-calc__input');
 const depositOptionsAll = $('.deposit-calc__select');
 const depositCheckboxAll = $('.calc-input__checkbox');
 const inputDeadlinesAll = $('.calc-input__deadlines');
+const inputDeadlinesDays = $('#input__checkbox--days');
+const inputDeadlinesMonth = $('#input__checkbox--month');
 depositCheckboxAll[1].checked = true;
 const deadlinesDays = $('#calc-input__deadline--days');
 const deadlinesMonth = $('#calc-input__deadline--month');
@@ -19,38 +21,30 @@ function clearFieldsResult(e) {
 };
 function checkedDeadline(e) {
     for (let i = 0; i < depositCheckboxAll.length; i++) {
-        depositCheckboxAll[i].checked = false;
         if (depositCheckboxAll[i].checked) {
             if (depositCheckboxAll[i].dataset.deadlinecheck) {
+                depositCheckboxAll[i].checked = false
                 return depositCheckboxAll[i];
             }
+        } else {
         }
     }
 };
-
-function returnCheckDeadline(e) {  
+function returnCheckDeadline(e) {
     const checkDeadline = checkedDeadline();
-    
-    if (checkDeadline) {      
-        if (checkDeadline.id == checkDeadline.id) {
-            for (let i = 0; i < inputDeadlinesAll.length; i++) {
-                
+    console.log(checkDeadline);
+    if (checkDeadline) {
+        for (let i = 0; i < inputDeadlinesAll.length; i++) {
+            depositCheckboxAll[i].checked = false;
+            console.log(depositCheckboxAll[i], '////////////');
+            if (checkDeadline.id == inputDeadlinesAll[i].id) {
+                depositCheckboxAll[i].checked = true;
+                // checkDeadline.checked = true;
+                inputDeadlinesAll[i].style.display = 'flex';
+            } else {
                 inputDeadlinesAll[i].style.display = 'none';
-                depositCheckboxAll[i].checked = false;
-
-                if (checkDeadline.id == inputDeadlinesAll[i].id) { 
-                    inputDeadlinesAll[i].style.display = 'flex';
-                    
-                    // depositCheckboxAll.checked = false;
-                    
-                    depositCheckboxAll[i].checked = true;
-                    // checkDeadline.checked = true;
-
-                    console.log(checkDeadline);
-                    console.log(inputDeadlinesAll);
-                } 
             }
-    }
+        }
     }
 }
 function selectCapit(e) {
@@ -94,14 +88,14 @@ depositOptionsAll.on('change', function (e) { calculateFunction() });
 function calculateFunction(e) {
         clearFieldsResult();
         const initialSum = parseFloat($('.calc-input__sum').val().replace(/\s/g, ""));
-        const deadlinesDays = $('#calc-input__deadline--days').val().replace(/\s/g, "");
-        const deadlinesMonth = $('#calc-input__deadline--month').val().replace(/\s/g, "");
-        // const deadlinesDays = $('#calc-input__deadline--days');
-        // const deadlinesMonth = $('#calc-input__deadline--month');
+        // const deadlinesDays = $('#calc-input__deadline--days').val().replace(/\s/g, "");
+        // const deadlinesMonth = $('#calc-input__deadline--month').val().replace(/\s/g, "");
+        const deadlinesDaysV = deadlinesDays.val().replace(/\s/g, "");
+        const deadlinesMonthV = deadlinesMonth.val().replace(/\s/g, "");
 
         
-        const deadlinesDaysVal = parseFloat((deadlinesDays / 30) / 12);
-        const deadlinesMonthVal = parseFloat(deadlinesMonth / 12);
+        const deadlinesDaysVal = parseFloat((deadlinesDaysV / 30) / 12);
+        const deadlinesMonthVal = parseFloat(deadlinesMonthV / 12);
         const deadlinesAll = parseFloat(deadlinesDaysVal + deadlinesMonthVal);
         returnCheckDeadline(); 
 
