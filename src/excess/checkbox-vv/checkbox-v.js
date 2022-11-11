@@ -1,10 +1,11 @@
 const depositInputAll = $('.deposit-calc__input');
 const depositOptionsAll = $('.deposit-calc__select');
-const deadlineOptionsAll = $('.deadline__option');
 const divDeadlinesDays = $('#div__checkbox--days');
 const divDeadlinesMonth = $('#div__checkbox--month');
+const checkDeadlinesAll = $('.calc-input__deadline__checkboxs__label input:checkbox');
 const deadlinesDays = $('#calc-input__deadline--days');
 const deadlinesMonth = $('#calc-input__deadline--month');
+const calcDepositBtn = $('.calc-deposit-btn');
 const finalSum = $('.deposit__result__out--final-sum');
 const outPercentAll = $('.deposit__result__out--all-percents');
 const sumAllDeposits = $('.deposit__result__out--sum-all-deposits');
@@ -16,6 +17,27 @@ function clearFieldsResult(e) {
     outPercentAll.text("")
     sumAllDeposits.text("")
 };
+checkDeadlinesAll.click(function () {
+    if ($(this).is(':checked')) {
+        checkDeadlinesAll.not(this).prop('checked', false);
+        viewInputDeadline(this)
+    }
+});
+function viewInputDeadline(checkedElem) {  
+    if (checkedElem.id == divDeadlinesDays.attr("data-deadlineCheck")) {
+        deadlinesMonth.val(0)
+        deadlinesDays.val(30)
+        divDeadlinesDays.css({ 'display': 'flex'})
+        divDeadlinesMonth.css({ 'display': 'none'})
+    }
+    if (checkedElem.id == divDeadlinesMonth.attr("data-deadlineCheck")) {
+        deadlinesMonth.val(12)
+        deadlinesDays.val(0)
+        divDeadlinesMonth.css({ 'display': 'flex'})
+        divDeadlinesDays.css({ 'display': 'none'})
+    }
+}                            
+
 function selectCapit(e) {
     for (let i = 0; i < calcInputCapitalization.length; i++) {
         if (calcInputCapitalization[i].selected) {
@@ -36,31 +58,6 @@ function selectDeposit(e) {
         }
     }
 };
-function selectDeadline(e) {
-    for (let i = 0; i < deadlineOptionsAll.length; i++) {
-        if (deadlineOptionsAll[i].selected) {
-            if (deadlineOptionsAll[i].dataset.deadline) {
-                return deadlineOptionsAll[i];
-            }
-        }
-    }
-};
-function viewDeadlineDays(e) { 
-    const viewDeadline = selectDeadline();
-    if (viewDeadline.dataset.deadline == deadlinesDays.data('deadline')) {
-        divDeadlinesDays.css({ 'display': 'flex'})
-        divDeadlinesMonth.css({ 'display': 'none' })
-        return deadlinesDays.val().replace(/\s/g, "")
-    } else {return 0}
-}
-function viewDeadlineMonth(e) { 
-    const viewDeadline = selectDeadline();
-    if (viewDeadline.dataset.deadline == deadlinesMonth.data('deadline')) {
-        divDeadlinesMonth.css({ 'display': 'flex'})
-        divDeadlinesDays.css({ 'display': 'none'})
-        return deadlinesMonth.val().replace(/\s/g, "")
-    } else {return 0}
-}
 function pushResult(finalSumVal, outPercentVal, sumAllDepositsVal) {
     finalSum.append(finalSumVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
     outPercentAll.append(outPercentVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
@@ -82,18 +79,21 @@ depositOptionsAll.on('change', function (e) { calculateFunction() });
 function calculateFunction(e) {
         clearFieldsResult();
         const initialSum = parseFloat($('.calc-input__sum').val().replace(/\s/g, ""));
-        const deadlinesDays = viewDeadlineDays();
-        const deadlinesMonth = viewDeadlineMonth();
+        // const deadlinesDays = $('#calc-input__deadline--days').val().replace(/\s/g, "");
+        // const deadlinesMonth = $('#calc-input__deadline--month').val().replace(/\s/g, "");
+        const deadlinesDaysV = deadlinesDays.val().replace(/\s/g, "");
+        const deadlinesMonthV = deadlinesMonth.val().replace(/\s/g, "");
 
-        const deadlinesDaysVal = parseFloat((deadlinesDays / 30) / 12);
-        const deadlinesMonthVal = parseFloat(deadlinesMonth / 12);
+        
+        const deadlinesDaysVal = parseFloat((deadlinesDaysV / 30) / 12);
+        const deadlinesMonthVal = parseFloat(deadlinesMonthV / 12);
         const deadlinesAll = parseFloat(deadlinesDaysVal + deadlinesMonthVal);
 
         const bet = (parseFloat($('.calc-input__bet').val().replace(/\s/g, "")) / 100);
         const capitalization = selectCapit();
         const addDeposit = parseFloat($('.calc-input__adds-deposit').val().replace(/\s/g, ""));
         const addDepositOption = selectDeposit();
-    
+
         const finalSumVal = initialSum * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);
         const outPercentVal = finalSumVal - initialSum;
         const sumAllDepositsVal = (addDeposit * (deadlinesAll *  12)) / addDepositOption;
@@ -105,6 +105,7 @@ function calculateFunction(e) {
         // формула 'Начислено процентов:' вместе с поплнением вкладов не готова:
         const outPercentWithDeposit  = outPercentVal;
         // const outPercentWithDeposit =  (finalSumWithDeposit  / (deadlinesAll / capitalization)); 
+
 
         pushResult(finalSumWithDeposit, outPercentWithDeposit, sumAllDepositsVal)
 };
