@@ -1,7 +1,7 @@
 const depositInputAll = $('.deposit-calc__input');
 const depositOptionsAll = $('.deposit-calc__select');
 const depositCheckboxAll = $('.calc-input__checkbox');
-// const inputDeadlinesAll = $('.calc-input__deadlines');
+const inputDeadlinesAll = $('.calc-input__deadlines');
 const inputDeadlinesDays = $('#input__checkbox--days');
 const inputDeadlinesMonth = $('#input__checkbox--month');
 depositCheckboxAll[1].checked = true;
@@ -14,6 +14,31 @@ const sumAllDeposits = $('.deposit__result__out--sum-all-deposits');
 const calcInputCapitalization = document.querySelectorAll('.calc-input__capitalizations .capitalization');
 const calcInputDepositPeriod = document.querySelectorAll('.calc-input__deposit_period .deposit_period__val');
 
+// работающий чекбокс (версия финал):
+// const divDeadlinesDays = $('#div__checkbox--days');
+// const divDeadlinesMonth = $('#div__checkbox--month');
+// const checkDeadlinesAll = $('.calc-input__deadline__checkboxs__label input:checkbox');
+// checkDeadlinesAll.click(function () {
+//     if ($(this).is(':checked')) {
+//         checkDeadlinesAll.not(this).prop('checked', false);
+//         viewInputDeadline(this)
+//     }
+// });
+// function viewInputDeadline(checkedElem) {  
+//     if (checkedElem.id == divDeadlinesDays.attr("data-deadlineCheck")) {
+//         deadlinesMonth.val(0)
+//         deadlinesDays.val(30)
+//         divDeadlinesDays.css({ 'display': 'flex'})
+//         divDeadlinesMonth.css({ 'display': 'none'})
+//     }
+//     if (checkedElem.id == divDeadlinesMonth.attr("data-deadlineCheck")) {
+//         deadlinesMonth.val(12)
+//         deadlinesDays.val(0)
+//         divDeadlinesMonth.css({ 'display': 'flex'})
+//         divDeadlinesDays.css({ 'display': 'none'})
+//     }
+// }
+
 function clearFieldsResult(e) {
     finalSum.text("")
     outPercentAll.text("")
@@ -23,44 +48,30 @@ function checkedDeadline(e) {
     for (let i = 0; i < depositCheckboxAll.length; i++) {
         if (depositCheckboxAll[i].checked) {
             if (depositCheckboxAll[i].dataset.deadlinecheck) {
+                depositCheckboxAll[i].checked = false
                 return depositCheckboxAll[i];
             }
+        } else {
         }
     }
 };
-function returnCheckDeadline2 (e) { 
+function returnCheckDeadline(e) {
     const checkDeadline = checkedDeadline();
-    if (checkDeadline.id == inputDeadlinesDays.attr('id')) {
-        depositCheckboxAll[1].checked = false;
-        inputDeadlinesMonth.css({ 'display':'none'});
-        inputDeadlinesDays.css({ 'display':'flex'});
-    }
-    if (checkDeadline.id == inputDeadlinesMonth.attr('id')) {
-        depositCheckboxAll[0].checked = false;
-        inputDeadlinesDays.css({ 'display':'none'});
-        inputDeadlinesMonth.css({ 'display':'flex'});
+    console.log(checkDeadline);
+    if (checkDeadline) {
+        for (let i = 0; i < inputDeadlinesAll.length; i++) {
+            depositCheckboxAll[i].checked = false;
+            console.log(depositCheckboxAll[i], '////////////');
+            if (checkDeadline.id == inputDeadlinesAll[i].id) {
+                depositCheckboxAll[i].checked = true;
+                // checkDeadline.checked = true;
+                inputDeadlinesAll[i].style.display = 'flex';
+            } else {
+                inputDeadlinesAll[i].style.display = 'none';
+            }
+        }
     }
 }
-// function returnCheckDeadline(e) {  
-//     const checkDeadline = checkedDeadline();
-    
-//     if (checkDeadline) {      
-//         const checkDeadlineId = checkDeadline.id;
-//         console.log(checkDeadlineId);
-//     if (checkDeadline.id == checkDeadline.id) {
-//         for (let i = 0; i < inputDeadlinesAll.length; i++) {
-//             inputDeadlinesAll[i].style.display = 'none';
-//             console.log(inputDeadlinesAll[i]);
-//             if (checkDeadline.id == inputDeadlinesAll[i].id) {
-//                 inputDeadlinesAll[i].style.display = 'flex';
-//                 console.log(inputDeadlinesAll[i]);
-//             }
-
-//             }   
-//         }
-// }
-// }
-
 function selectCapit(e) {
     for (let i = 0; i < calcInputCapitalization.length; i++) {
         if (calcInputCapitalization[i].selected) {
@@ -111,9 +122,7 @@ function calculateFunction(e) {
         const deadlinesDaysVal = parseFloat((deadlinesDaysV / 30) / 12);
         const deadlinesMonthVal = parseFloat(deadlinesMonthV / 12);
         const deadlinesAll = parseFloat(deadlinesDaysVal + deadlinesMonthVal);
-        // returnCheckDeadline(); 
-    // checkedDeadline();
-        returnCheckDeadline2();
+        returnCheckDeadline(); 
 
         const bet = (parseFloat($('.calc-input__bet').val().replace(/\s/g, "")) / 100);
         const capitalization = selectCapit();
