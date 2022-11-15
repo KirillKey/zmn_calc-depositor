@@ -45,21 +45,21 @@ function selectDeadline(e) {
         }
     }
 };
-function viewDeadlineDays(e) { 
+function viewDeadlineDays(e) {
     const viewDeadline = selectDeadline();
     if (viewDeadline.dataset.deadline == deadlinesDays.data('deadline')) {
-        divDeadlinesDays.css({ 'display': 'flex'})
+        divDeadlinesDays.css({ 'display': 'flex' })
         divDeadlinesMonth.css({ 'display': 'none' })
         return deadlinesDays.val().replace(/\s/g, "")
-    } else {return 0}
+    } else { return 0 }
 }
-function viewDeadlineMonth(e) { 
+function viewDeadlineMonth(e) {
     const viewDeadline = selectDeadline();
     if (viewDeadline.dataset.deadline == deadlinesMonth.data('deadline')) {
-        divDeadlinesMonth.css({ 'display': 'flex'})
-        divDeadlinesDays.css({ 'display': 'none'})
+        divDeadlinesMonth.css({ 'display': 'flex' })
+        divDeadlinesDays.css({ 'display': 'none' })
         return deadlinesMonth.val().replace(/\s/g, "")
-    } else {return 0}
+    } else { return 0 }
 }
 function pushResult(finalSumVal, outPercentVal, sumAllDepositsVal) {
     finalSum.append(finalSumVal.toLocaleString('ru', { maximumFractionDigits: 2, minimumFractionDigits: 2 }));
@@ -80,31 +80,38 @@ depositInputAll.on('input', function (e) {
 depositOptionsAll.on('change', function (e) { calculateFunction() });
 
 function calculateFunction(e) {
-        clearFieldsResult();
-        const initialSum = parseFloat($('.calc-input__sum').val().replace(/\s/g, ""));
-        const deadlinesDays = viewDeadlineDays();
-        const deadlinesMonth = viewDeadlineMonth();
+    clearFieldsResult();
+    const initialSum = parseFloat($('.calc-input__sum').val().replace(/\s/g, ""));
+    const deadlinesDays = viewDeadlineDays();
+    const deadlinesMonth = viewDeadlineMonth();
 
-        const deadlinesDaysVal = parseFloat((deadlinesDays / 30) / 12);
-        const deadlinesMonthVal = parseFloat(deadlinesMonth / 12);
-        const deadlinesAll = parseFloat(deadlinesDaysVal + deadlinesMonthVal);
+    const deadlinesDaysVal = parseFloat((deadlinesDays / 30) / 12);
+    const deadlinesMonthVal = parseFloat(deadlinesMonth / 12);
+    const deadlinesAll = parseFloat(deadlinesDaysVal + deadlinesMonthVal);
 
-        const bet = (parseFloat($('.calc-input__bet').val().replace(/\s/g, "")) / 100);
-        const capitalization = selectCapit();
-        const addDeposit = parseFloat($('.calc-input__adds-deposit').val().replace(/\s/g, ""));
-        const addDepositOption = selectDeposit();
-    
-        const finalSumVal = initialSum * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);
-        const outPercentVal = finalSumVal - initialSum;
-        const sumAllDepositsVal = (addDeposit * (deadlinesAll *  12)) / addDepositOption;
-        const sumAllDepositsWithDeposit = sumAllDepositsVal * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);
+    const bet = (parseFloat($('.calc-input__bet').val().replace(/\s/g, "")) / 100);
+    const capitalization = selectCapit();
+    const addDeposit = parseFloat($('.calc-input__adds-deposit').val().replace(/\s/g, ""));
+    const addDepositOption = selectDeposit();
 
-        const finalSumWithDeposit = finalSumVal + sumAllDepositsWithDeposit;
-    
-        // формула 'Начислено процентов:' без пополнения вкладов готова.
-        // формула 'Начислено процентов:' вместе с поплнением вкладов не готова:
-        const outPercentWithDeposit  = outPercentVal;
-        // const outPercentWithDeposit =  (finalSumWithDeposit  / (deadlinesAll / capitalization)); 
+    const finalSumVal = initialSum * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);
+    const outPercentVal = finalSumVal - initialSum;
+    const sumAllDepositsVal = (addDeposit * (deadlinesAll * 12)) / addDepositOption;
+    const sumAllDepositsWithDeposit = sumAllDepositsVal * Math.pow((1 + bet / capitalization), deadlinesAll * capitalization);
 
-        pushResult(finalSumWithDeposit, outPercentWithDeposit, sumAllDepositsVal)
+    const finalSumWithDeposit = finalSumVal + sumAllDepositsWithDeposit;
+
+    // формула 'Начислено процентов:' без пополнения вкладов готова.
+    // формула 'Начислено процентов:' вместе с поплнением вкладов не готова:
+    const outPercentWithDeposit = outPercentVal;
+    // const outPercentWithDeposit =  (finalSumWithDeposit  / (deadlinesAll / capitalization)); 
+
+    pushResult(finalSumWithDeposit, outPercentWithDeposit, sumAllDepositsVal)
+
+    // 
+    const depositResultTable = $('.deposit-result__table');
+    const depositResultDate = $('#deposit-date');
+
+    const dateVal = deadlinesMonth;
+    depositResultDate.text(dateVal + " месяц")
 };

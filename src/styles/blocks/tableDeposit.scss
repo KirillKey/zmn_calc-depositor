@@ -1,4 +1,4 @@
-.rates-currency {
+.deposit-result {
     background-color: rgba(101, 175, 4, 0.3);
     text-align: center;
     // border: 16px solid transparent;
@@ -19,7 +19,7 @@
     }
 }
 
-.rates-currency__table {
+.deposit-result__table {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,18 +32,18 @@
     }
 }
 
-.rates-currency__table-tbody th {
+.deposit-result__table-tbody th {
     font-size: 14px;
     padding: 8px;
 }
-.rates-currency__table-tr--head{
+.deposit-result__table-tr--head{
     vertical-align: top;
     @include phones-album {
   
     }
 }
 
-.rates-currency__table-tbody td {
+.deposit-result__table-tbody td {
     background-color: #f0f8ff;
     white-space: normal;
     padding: 6px 28px;
@@ -58,12 +58,12 @@
     }
 }
 
-.rates-currency__table-tbody td:hover {
+.deposit-result__table-tbody td:hover {
     border: 1px rgba(128, 128, 128, 0.2) outset;
     box-shadow: -1px -1px 0px 0px #65af0491;
 }
 
-.rates-currency__table-tbody td a:hover {
+.deposit-result__table-tbody td a:hover {
     color: rgba(240, 156, 0, 0.9);
 }
 
